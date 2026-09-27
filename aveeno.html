@@ -24,6 +24,14 @@
     --poor: #e0a458;
     --critical: #e0685c;
     --warn-tint: #fceceb;
+    --ig-purple: #833ab4;
+    --ig-pink: #c13584;
+    --ig-magenta: #e1306c;
+    --ig-orange: #f77737;
+    --ig-yellow: #fcaf45;
+    --ig-gradient: linear-gradient(135deg, var(--ig-purple), var(--ig-pink), var(--ig-magenta), var(--ig-orange));
+    --ig-tint: #fdf0f6;
+    --c-aveeno-ig: var(--ig-magenta);
   }
 
   * { box-sizing: border-box; }
@@ -1050,6 +1058,61 @@
     font-weight: 400;
   }
 
+  /* ===== Instagram-themed slides ===== */
+  .slide.ig-theme {
+    --accent: var(--ig-magenta);
+    --accent-tint: var(--ig-tint);
+  }
+
+  .ig-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--ig-gradient);
+  }
+
+  .ig-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .ig-badge .ig-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--ig-gradient);
+    display: inline-block;
+  }
+
+  /* ===== Platform source footer ===== */
+  .platform-footer {
+    position: absolute;
+    bottom: 16px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .platform-footer .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .platform-footer .dot.yt { background: #ff0000; }
+  .platform-footer .dot.ig { background: var(--ig-gradient); }
+  .platform-footer .dot.both { background: linear-gradient(90deg, #ff0000 50%, var(--ig-magenta) 50%); }
+
   /* ===== Keyframes ===== */
   @keyframes draw {
     to { stroke-dashoffset: 0; }
@@ -1170,6 +1233,7 @@
       <h1 class="cover-title">Aveeno Baby's <span class="hl">Video Strategy</span>, Decoded</h1>
       <p class="cover-subtitle">What's winning, what's wasting budget, and the data-backed formula for the next video — a full-funnel video intelligence briefing powered by Lumetrics.</p>
       <div class="cover-meta">Competitive Insight &middot; Share of Voice &amp; Mind &middot; Comment Sentiment &middot; Channel Health &middot; Content Deepdive</div>
+      <div class="platform-footer"><span class="dot both"></span>YouTube Data &middot; Instagram Data &middot; Lumetrics</div>
     </section>
 
     <section class="slide">
@@ -1264,6 +1328,8 @@
       <div class="takeaway-bar">
         <strong>Cetaphil (33)</strong> and <strong>Sebamed (20)</strong> post far more videos past 1M views than Aveeno Baby (3) — but Aveeno's content earns <strong>7&ndash;1,527&times; more engagement</strong> per video. Reach without resonance is noise.
       </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1374,6 +1440,8 @@
         <strong>Cetaphil still leads Voice Share but is slipping</strong> (56.25% &rarr; 49.46%) as Tedibar surges (7.79% &rarr; 24.23%). Meanwhile <strong>Aveeno's Mind Share barely moves</strong> (71.65% &rarr; 72.60%) — it keeps the lion's share of engagement no matter how the content race shifts underneath it.
       </div>
 
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
     </section>
 
     <section class="slide">
@@ -1413,6 +1481,8 @@
         </div>
 
       </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1482,6 +1552,8 @@
         </div>
 
       </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1595,6 +1667,413 @@
         Five of 11 parameters clear the 20% bar: <strong>Gender Mix</strong> (Mixed, +42.1%), <strong>Animation Type</strong> (3D CGI, +41.2%), <strong>Narrative Structure</strong> (Before-After-Bridge, +27.6%), <strong>Content Lifespan</strong> (Evergreen, +27.0%) and <strong>Age Group Shown</strong> (Gen X, +25.6%). Anchor the next video around these five, and treat the rest of the formula as a reasonable best guess, not a certainty.
       </div>
 
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- INSTAGRAM SLIDES                                              -->
+    <!-- ============================================================ -->
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Competitive Insight &middot; Instagram &middot; Baby Skincare &middot; Lifetime Engagement Benchmark</div>
+      <h1>On Instagram, Aveeno's Mind Share Beats Its Voice Share Too</h1>
+
+      <div class="story-body">
+
+        <div class="stat-col">
+          <div class="hero-label">Lifetime Mind Share minus Voice Share (percentage points)</div>
+          <div class="hero-number" data-target="23.0" data-decimals="1" data-suffix="pp">0</div>
+          <div class="hero-delta">2nd-strongest divergence of 5 brands</div>
+
+          <div class="rank-list">
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos/bestforbaby.jpg" alt="Best For Baby">
+              <span class="rank-name">Best For Baby</span>
+              <span class="rank-value">+67.34pp</span>
+            </div>
+            <div class="rank-row hero-row">
+              <img class="rank-logo" src="assets/brand-logos/aveeno.jpg" alt="Aveeno Baby">
+              <span class="rank-name">Aveeno Baby</span>
+              <span class="rank-value">+23.02pp</span>
+            </div>
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos/tedibar.jpg" alt="Tedibar">
+              <span class="rank-name">Tedibar</span>
+              <span class="rank-value">+0.63pp</span>
+            </div>
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos/sebamed.jpg" alt="Sebamed">
+              <span class="rank-name">Sebamed</span>
+              <span class="rank-value">+0.20pp</span>
+            </div>
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos/cetaphil.jpg" alt="Cetaphil">
+              <span class="rank-name">Cetaphil</span>
+              <span class="rank-value">&minus;91.18pp</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-col">
+          <div class="chart-heading">Reach vs. Resonance <span>— lifetime avg. views vs. avg. engagement per post, by brand</span></div>
+          <svg class="scatter" viewBox="0 0 640 364" preserveAspectRatio="xMidYMid meet">
+            <!-- gridlines -->
+            <line class="gridline" x1="60" y1="164" x2="620" y2="164"></line>
+            <text class="tick" x="52" y="168" text-anchor="end">15,000</text>
+            <line class="gridline" x1="60" y1="29" x2="620" y2="29"></line>
+            <text class="tick" x="52" y="33" text-anchor="end">30,000</text>
+
+            <!-- axes -->
+            <line class="axis-line animate" pathLength="1" x1="60" y1="20" x2="60" y2="300"></line>
+            <line class="axis-line animate" pathLength="1" x1="60" y1="300" x2="620" y2="300"></line>
+
+            <!-- x ticks (avg views) -->
+            <text class="tick" x="60" y="330" text-anchor="middle">0</text>
+            <text class="tick" x="247" y="330" text-anchor="middle">3M</text>
+            <text class="tick" x="433" y="330" text-anchor="middle">6M</text>
+            <text class="tick" x="620" y="330" text-anchor="middle">9M</text>
+
+            <text class="axis-title" x="340" y="356" text-anchor="middle">Lifetime avg. views per post (reach) &#8594;</text>
+            <text class="axis-title" x="-160" y="16" text-anchor="middle" transform="rotate(-90)">Avg. engagement per post &#8594;</text>
+
+            <!-- data points: domain x:0-9M views, y:0-31,000 engagement -->
+
+            <!-- Sebamed (3.1K, 147.8) -->
+            <circle class="dot-ring competitor" cx="60" cy="299" r="15" style="animation-delay:0.7s"></circle>
+            <image class="logo-mark" x="47" y="286" width="26" height="26" href="assets/brand-logos/sebamed.jpg" style="animation-delay:0.7s"></image>
+
+            <!-- Tedibar (22.2K, 805.5) -->
+            <circle class="dot-ring competitor" cx="61" cy="293" r="15" style="animation-delay:0.75s"></circle>
+            <image class="logo-mark" x="48" y="280" width="26" height="26" href="assets/brand-logos/tedibar.jpg" style="animation-delay:0.75s"></image>
+
+            <!-- Cetaphil (8.7M, 1676.0) -->
+            <circle class="dot-ring competitor" cx="601" cy="285" r="16" style="animation-delay:0.8s"></circle>
+            <image class="logo-mark" x="588" y="272" width="26" height="26" href="assets/brand-logos/cetaphil.jpg" style="animation-delay:0.8s"></image>
+
+            <!-- Best For Baby (323.9K, 30450.5) -->
+            <circle class="dot-ring competitor" cx="80" cy="25" r="16" style="animation-delay:0.85s"></circle>
+            <image class="logo-mark" x="67" y="12" width="26" height="26" href="assets/brand-logos/bestforbaby.jpg" style="animation-delay:0.85s"></image>
+
+            <!-- Aveeno Baby (172.0K, 14952.3) — the hero -->
+            <circle class="dot-ring aveeno" cx="71" cy="165" r="22" style="animation-delay:0.6s"></circle>
+            <image class="logo-mark" x="52" y="146" width="38" height="38" href="assets/brand-logos/aveeno.jpg" style="animation-delay:0.6s"></image>
+            <text class="dot-value" x="71" y="205" text-anchor="middle" style="animation-delay:1.0s">14,952</text>
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        Aveeno's Mind Share exceeds its Voice Share by <strong>+23.0 percentage points</strong> lifetime (+24.2pp in the current period) — the 2nd-strongest divergence of the 5 tracked brands, behind only Best For Baby. <strong>Cetaphil sits at the opposite extreme</strong>: 95.63% of category Voice Share from raw view volume, but just 4.45% of Mind Share — reach without resonance, the same pattern seen on YouTube.
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Brand Health &middot; Instagram &middot; Share of Voice &amp; Mind &middot; 1 Mar &ndash; 31 Aug 2026</div>
+      <h1>Instagram Share of Voice &amp; Mind: Lifetime vs. Current Period</h1>
+
+      <div class="story-body single-col">
+
+        <div class="brand-legend">
+          <span class="item"><span class="swatch" style="background:var(--c-aveeno-ig)"></span><img src="assets/brand-logos/aveeno.jpg" alt="">Aveeno Baby</span>
+          <span class="item"><span class="swatch" style="background:var(--c-tedibar)"></span><img src="assets/brand-logos/tedibar.jpg" alt="">Tedibar</span>
+          <span class="item"><span class="swatch" style="background:var(--c-sebamed)"></span><img src="assets/brand-logos/sebamed.jpg" alt="">Sebamed</span>
+          <span class="item"><span class="swatch" style="background:var(--c-cetaphil)"></span><img src="assets/brand-logos/cetaphil.jpg" alt="">Cetaphil</span>
+          <span class="item"><span class="swatch" style="background:var(--c-bestforbaby)"></span><img src="assets/brand-logos/bestforbaby.jpg" alt="">Best For Baby</span>
+        </div>
+
+        <div class="pie-grid">
+
+          <!-- SOV Lifetime -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Voice <span>&middot; Lifetime</span></div>
+            <div class="donut-wrap" style="animation-delay:0.15s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-aveeno-ig)" stroke-width="20" stroke-dasharray="3.97 341.61" stroke-dashoffset="0" style="animation-delay:0.3s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-tedibar)" stroke-width="20" stroke-dasharray="0.28 345.30" stroke-dashoffset="-3.97" style="animation-delay:0.35s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-sebamed)" stroke-width="20" stroke-dasharray="0.07 345.51" stroke-dashoffset="-4.25" style="animation-delay:0.4s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-cetaphil)" stroke-width="20" stroke-dasharray="330.47 15.11" stroke-dashoffset="-4.32" style="animation-delay:0.45s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bestforbaby)" stroke-width="20" stroke-dasharray="10.75 334.83" stroke-dashoffset="-334.79" style="animation-delay:0.5s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">Cetaphil</div>
+                <div class="leader-pct">95.63%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SOV Current -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Voice <span>&middot; 1 Mar&ndash;31 Aug 2026</span></div>
+            <div class="donut-wrap" style="animation-delay:0.3s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-aveeno-ig)" stroke-width="20" stroke-dasharray="7.15 338.43" stroke-dashoffset="0" style="animation-delay:0.45s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-tedibar)" stroke-width="20" stroke-dasharray="0.04 345.54" stroke-dashoffset="-7.15" style="animation-delay:0.5s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-sebamed)" stroke-width="20" stroke-dasharray="0.83 344.75" stroke-dashoffset="-7.19" style="animation-delay:0.55s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-cetaphil)" stroke-width="20" stroke-dasharray="293.30 52.28" stroke-dashoffset="-8.02" style="animation-delay:0.6s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bestforbaby)" stroke-width="20" stroke-dasharray="44.19 301.39" stroke-dashoffset="-301.32" style="animation-delay:0.65s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">Cetaphil</div>
+                <div class="leader-pct">84.89%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pie-divider"></div>
+
+          <!-- SOM Lifetime -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Mind <span>&middot; Lifetime</span></div>
+            <div class="donut-wrap" style="animation-delay:0.45s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-aveeno-ig)" stroke-width="20" stroke-dasharray="83.53 262.05" stroke-dashoffset="0" style="animation-delay:0.6s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-tedibar)" stroke-width="20" stroke-dasharray="2.45 343.13" stroke-dashoffset="-83.53" style="animation-delay:0.65s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-sebamed)" stroke-width="20" stroke-dasharray="0.76 344.82" stroke-dashoffset="-85.99" style="animation-delay:0.7s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-cetaphil)" stroke-width="20" stroke-dasharray="15.38 330.20" stroke-dashoffset="-86.75" style="animation-delay:0.75s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bestforbaby)" stroke-width="20" stroke-dasharray="243.46 102.12" stroke-dashoffset="-102.12" style="animation-delay:0.8s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">Best For Baby</div>
+                <div class="leader-pct">70.45%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SOM Current -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Mind <span>&middot; 1 Mar&ndash;31 Aug 2026</span></div>
+            <div class="donut-wrap" style="animation-delay:0.6s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-aveeno-ig)" stroke-width="20" stroke-dasharray="90.71 254.87" stroke-dashoffset="0" style="animation-delay:0.75s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-tedibar)" stroke-width="20" stroke-dasharray="0.21 345.37" stroke-dashoffset="-90.71" style="animation-delay:0.8s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-sebamed)" stroke-width="20" stroke-dasharray="1.14 344.44" stroke-dashoffset="-90.92" style="animation-delay:0.85s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-cetaphil)" stroke-width="20" stroke-dasharray="6.46 339.12" stroke-dashoffset="-92.06" style="animation-delay:0.9s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bestforbaby)" stroke-width="20" stroke-dasharray="247.05 98.53" stroke-dashoffset="-98.52" style="animation-delay:0.95s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">Best For Baby</div>
+                <div class="leader-pct">71.49%</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        <strong>Cetaphil dominates raw Voice Share</strong> (95.63% lifetime, still 84.89% current) but converts almost none of it into Mind Share (4.45% &rarr; 1.87%) — the same reach-without-resonance pattern as YouTube. <strong>Aveeno's Mind Share held firm at roughly a quarter</strong> of all engagement (24.17% &rarr; 26.25%) from just ~2% of Voice Share.
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Audience Sentiment &middot; Instagram &middot; Marketing Funnel &middot; Comment Analysis</div>
+      <h1>Instagram Comments Are Even More Positive Than YouTube's</h1>
+
+      <div class="story-body">
+
+        <div class="funnel-grid-col">
+          <div class="funnel-grid">
+            <div></div>
+            <div class="col-head">Negative</div>
+            <div class="col-head">Neutral</div>
+            <div class="col-head">Positive</div>
+
+            <div class="row-label">Purchase</div>
+            <button class="grid-cell" data-source="ig" data-key="purchase-negative" style="background:rgba(224,104,92,0.15);animation-delay:0.1s">0<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="purchase-neutral" style="background:rgba(122,149,196,0.15);animation-delay:0.15s">0<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="purchase-positive" style="background:rgba(225,48,108,0.15);animation-delay:0.2s">1<span class="cell-hint">comments</span></button>
+
+            <div class="row-label">Consideration</div>
+            <button class="grid-cell" data-source="ig" data-key="consideration-negative" style="background:rgba(224,104,92,0.15);animation-delay:0.25s">0<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="consideration-neutral" style="background:rgba(122,149,196,0.75);color:#fff;animation-delay:0.3s">46<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="consideration-positive" style="background:rgba(225,48,108,0.18);animation-delay:0.35s">15<span class="cell-hint">comments</span></button>
+
+            <div class="row-label">Awareness</div>
+            <button class="grid-cell" data-source="ig" data-key="awareness-negative" style="background:rgba(224,104,92,0.75);color:#fff;animation-delay:0.4s">3<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="awareness-neutral" style="background:rgba(122,149,196,0.33);animation-delay:0.45s">14<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="awareness-positive" style="background:rgba(225,48,108,0.75);color:#fff;animation-delay:0.5s">289<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+          </div>
+        </div>
+
+        <div class="comment-col">
+          <div class="chart-heading">Real Comments <span>— click a cell to load 5 examples</span></div>
+          <div class="comment-panel" id="comment-panel-ig"></div>
+        </div>
+
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Brand Analysis &middot; Instagram &middot; My Posts &middot; Quality &amp; Reach Efficiency</div>
+      <h1>Healthy Engagement, Room to Improve On-Platform Optimization</h1>
+
+      <div class="channel-slide-body">
+
+        <div class="health-row" style="animation-delay:0.1s">
+          <div class="health-score-block">
+            <div class="health-score-value"><span class="hero-number" data-target="58" data-decimals="0">0</span><span class="of100">/100</span></div>
+            <div class="health-score-label">Avg. Quality Score &middot; 14 posts published 1 Mar&ndash;31 Aug 2026</div>
+          </div>
+          <div class="health-bar-wrap">
+            <div class="health-bar-title">Post Quality Score Distribution</div>
+            <div class="health-bar">
+              <div class="seg seg-good" style="width:0%;animation-delay:0.3s"></div>
+              <div class="seg seg-average" style="width:35.7%;animation-delay:0.35s">5</div>
+              <div class="seg seg-poor" style="width:64.3%;animation-delay:0.4s">9</div>
+              <div class="seg seg-critical" style="width:0%;animation-delay:0.45s"></div>
+            </div>
+            <div class="health-legend">
+              <span><span class="dot" style="background:var(--good)"></span>Good (80&ndash;100): <b>0</b></span>
+              <span><span class="dot" style="background:var(--average)"></span>Average (55&ndash;79): <b>5</b></span>
+              <span><span class="dot" style="background:var(--poor)"></span>Poor (30&ndash;54): <b>9</b></span>
+              <span><span class="dot" style="background:var(--critical)"></span>Critical (0&ndash;29): <b>0</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="waste-row">
+
+          <div class="waste-col" style="animation-delay:0.2s">
+            <div class="waste-title">Where Reach Doesn't Convert</div>
+            <div class="waste-subtitle">1 Mar &ndash; 31 Aug 2026 &middot; Cost-Benefit Analysis</div>
+            <div class="funnel-list">
+              <div class="funnel-row"><span>Posts created</span><b>14</b></div>
+              <div class="funnel-row"><span>Crossed 5,000 views</span><b>9</b></div>
+              <div class="funnel-row"><span>Stuck under 5,000 views</span><b>5</b></div>
+              <div class="funnel-row"><span>Spend on those 5 (&#8377;8,000/post)</span><b>&#8377;40,000</b></div>
+              <div class="funnel-row"><span>Views earned by those 5</span><b>4,543</b></div>
+            </div>
+            <div class="warn-hero-wrap">
+              <div class="warn-hero hero-number" data-target="8.81" data-decimals="2" data-prefix="&#8377;" style="color:var(--poor)">0</div>
+              <div class="warn-hero-label">cost per view on underperforming posts</div>
+            </div>
+            <div class="warn-callout" style="border-left-color:var(--poor);background:#fdf6ec">
+              <strong style="color:var(--poor)">&#8377;40,000 spent, only 4,543 views back</strong> on the 5 posts stuck under 5,000 views — a much smaller leak than YouTube's, since Instagram's typical post already clears that bar.
+            </div>
+          </div>
+
+          <div class="waste-col" style="animation-delay:0.35s">
+            <div class="waste-title">Engagement Rate Is the Bright Spot</div>
+            <div class="waste-subtitle">1 Mar &ndash; 31 Aug 2026 &middot; all 14 posts published</div>
+            <div class="warn-hero-wrap">
+              <div class="warn-hero hero-number" data-target="0" data-decimals="0" data-suffix="/14" style="color:var(--good)">0</div>
+              <div class="warn-hero-label">posts with engagement rate under 0.5%</div>
+            </div>
+            <div class="engagement-visual"><span class="dot-cell" style="background:var(--poor);animation-delay:0.60s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.61s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.62s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.63s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.64s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.65s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.66s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.67s"></span><span class="dot-cell" style="background:var(--poor);animation-delay:0.68s"></span><span class="dot-cell" style="background:var(--average);animation-delay:0.69s"></span><span class="dot-cell" style="background:var(--average);animation-delay:0.70s"></span><span class="dot-cell" style="background:var(--average);animation-delay:0.71s"></span><span class="dot-cell" style="background:var(--average);animation-delay:0.72s"></span><span class="dot-cell" style="background:var(--average);animation-delay:0.73s"></span></div>
+            <div class="warn-callout">
+              <strong>Zero posts fell under 0.5% engagement</strong> — the opposite of YouTube's period, where every video did. But <b>9 of 14 posts (64%)</b> still score "Poor" for on-platform optimization (captions, hashtags, CTA structure) despite that healthy engagement.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Content Deepdive &middot; Instagram &middot; Dimension Winners</div>
+      <h1>4 of 5 Instagram Content Dimensions Have a Clear Winner</h1>
+
+      <div class="story-body single-col">
+
+        <div class="params-note">Dissected sample: <b>55 posts</b> across 6 native Instagram dimensions (benefit angle, proof point, language, creator type, CTA, format). A dimension has a <b>clear winner</b> only when the leader beats the runner-up by more than 20%. Language has only one observed value (no runner-up), so it isn't scored.</div>
+
+        <div class="param-board">
+          <div class="param-row" style="animation-delay:0.05s">
+            <span class="param-dot"></span>
+            <span class="param-name">Benefit Angle</span>
+            <span class="param-leader">Irritation<span class="val">230.3</span></span>
+            <span class="param-runner">vs Redness<span class="val">217.1</span></span>
+            <span class="param-dev">+6.0%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.1s">
+            <span class="param-dot"></span>
+            <span class="param-name">Reason to Believe</span>
+            <span class="param-leader">Recommended by...<span class="val">337.2</span></span>
+            <span class="param-runner">vs Made with...<span class="val">271.2</span></span>
+            <span class="param-dev">+24.3%</span>
+          </div>
+          <div class="param-row" style="animation-delay:0.15s">
+            <span class="param-dot"></span>
+            <span class="param-name">Language</span>
+            <span class="param-leader">English<span class="val">217.1</span></span>
+            <span class="param-runner">vs &mdash;<span class="val">n/a</span></span>
+            <span class="param-dev">100%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.2s">
+            <span class="param-dot"></span>
+            <span class="param-name">Creator Type</span>
+            <span class="param-leader">Expert<span class="val">432.3</span></span>
+            <span class="param-runner">vs Influencer<span class="val">142.5</span></span>
+            <span class="param-dev">+203.4%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.25s">
+            <span class="param-dot"></span>
+            <span class="param-name">Call to Action</span>
+            <span class="param-leader">Learn More<span class="val">793.5</span></span>
+            <span class="param-runner">vs Shop Now<span class="val">208.4</span></span>
+            <span class="param-dev">+280.8%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.3s">
+            <span class="param-dot"></span>
+            <span class="param-name">Content Format</span>
+            <span class="param-leader">Teasers<span class="val">791.1</span></span>
+            <span class="param-runner">vs Informational<span class="val">432.6</span></span>
+            <span class="param-dev">+82.9%</span>
+          </div>
+        </div>
+
+        <div class="formula-title">Recommended Content Formula <span>&mdash; top performer per dimension; green = statistically clear winner</span></div>
+        <div class="formula-strip">
+          <span class="formula-chip" style="animation-delay:0.6s"><b>Irritation</b> benefit angle</span>
+          <span class="formula-chip winner" style="animation-delay:0.63s"><b>Recommended by...</b> proof point</span>
+          <span class="formula-chip" style="animation-delay:0.66s"><b>English</b> language</span>
+          <span class="formula-chip winner" style="animation-delay:0.69s"><b>Expert</b> creator</span>
+          <span class="formula-chip winner" style="animation-delay:0.72s"><b>Learn More</b> CTA</span>
+          <span class="formula-chip winner" style="animation-delay:0.75s"><b>Teasers</b> format</span>
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        4 of 5 comparable dimensions clear the 20% bar, and by wide margins — <strong>Call to Action</strong> (Learn More, +280.8%) and <strong>Creator Type</strong> (Expert, +203.4%) show the starkest gaps of any parameter across either platform. Only the <strong>Benefit Angle</strong> (Irritation vs. Redness/Dryness) is a close, statistically uncertain race.
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
     </section>
 
     <section class="slide">
@@ -1607,42 +2086,43 @@
         <div class="verdict-card strength" style="animation-delay:0.1s">
           <div class="verdict-icon">&#9733;</div>
           <div class="verdict-title">Strength</div>
-          <div class="verdict-subtitle">When it lands, nothing else comes close</div>
+          <div class="verdict-subtitle">When it lands, nothing else comes close — on either platform</div>
           <ul class="verdict-list">
-            <li>Top videos earn <b>11,379</b> avg. engagement on 1M+ view content &mdash; <b>7x&ndash;1,527x</b> every competitor</li>
-            <li>Share of Mind holds at <b>72.6%</b> despite Share of Voice of just <b>3.8%</b></li>
-            <li>Audience sentiment skews positive: <b>68.3%</b> of comments channel-wide</li>
+            <li>YouTube: top videos earn <b>11,379</b> avg. engagement on 1M+ view content &mdash; <b>7x&ndash;1,527x</b> every competitor</li>
+            <li>YouTube: Share of Mind holds at <b>72.6%</b> despite Share of Voice of just <b>3.8%</b>; audience sentiment skews positive (<b>68.3%</b> of comments)</li>
+            <li>Instagram: Mind Share holds at <b>24&ndash;26%</b> of category engagement from just <b>~2%</b> of Voice Share (+23&ndash;24pp divergence, 2nd-best of 5 brands); <b>79%</b> of comments are positive</li>
           </ul>
         </div>
 
         <div class="verdict-card risk" style="animation-delay:0.25s">
           <div class="verdict-icon">!</div>
           <div class="verdict-title">Risk</div>
-          <div class="verdict-subtitle">The engine underneath is leaking budget</div>
+          <div class="verdict-subtitle">YouTube's engine is leaking budget; Instagram needs on-platform polish</div>
           <ul class="verdict-list">
-            <li>Channel Health Score: <b>38/100</b> &mdash; zero videos rated "Good"</li>
-            <li><b>&#8377;1,12,000</b> spent on 14 videos stuck under 10,000 views &mdash; <b>&#8377;1.93</b> per view</li>
-            <li><b>100%</b> of videos published Mar&ndash;Aug 2026 fell under 0.5% engagement rate</li>
+            <li>YouTube Channel Health Score: <b>38/100</b> &mdash; zero videos rated "Good"; <b>&#8377;1,12,000</b> spent on 14 videos stuck under 10,000 views (<b>&#8377;1.93</b>/view); <b>100%</b> of Mar&ndash;Aug videos fell under 0.5% engagement</li>
+            <li>Instagram engagement stayed healthy (0 posts under 0.5%), but <b>9 of 14</b> Mar&ndash;Aug posts (64%) score "Poor" for on-platform optimization &mdash; a captions/hashtags/CTA gap, not a content-quality gap</li>
           </ul>
         </div>
 
         <div class="verdict-card opportunity" style="animation-delay:0.4s">
           <div class="verdict-icon">&#8594;</div>
           <div class="verdict-title">Opportunity</div>
-          <div class="verdict-subtitle">A proven formula, ready to apply</div>
+          <div class="verdict-subtitle">Two proven formulas, ready to apply</div>
           <ul class="verdict-list">
-            <li><b>5 of 11</b> content parameters show a statistically clear winner (&gt;20% lead)</li>
-            <li>Proven formula: <b>Mixed</b>-gender cast, <b>3D CGI</b> animation, <b>Before-After-Bridge</b> story, <b>Evergreen</b> topics, <b>Gen X</b> talent</li>
-            <li>Applying it turns isolated wins into a repeatable content system</li>
+            <li>YouTube: <b>5 of 11</b> parameters show a clear winner (&gt;20% lead) &mdash; <b>Mixed</b>-gender cast, <b>3D CGI</b> animation, <b>Before-After-Bridge</b> story, <b>Evergreen</b> topics, <b>Gen X</b> talent</li>
+            <li>Instagram: <b>4 of 5</b> dimensions show a clear winner &mdash; <b>Expert</b>-led creator content, <b>"Learn More"</b> CTA, <b>teaser</b>-style hooks (+80&ndash;280% lift)</li>
+            <li>Applying both turns isolated wins into a repeatable, cross-platform content system</li>
           </ul>
         </div>
 
       </div>
 
       <div class="verdict-bottom-line" style="animation-delay:0.6s">
-        Aveeno Baby doesn't have a content problem — it has a <strong>consistency</strong> problem. The best videos already beat every competitor; fix the SEO and budget leaks, apply the 5 proven parameters, and scale what's already working.
+        Aveeno Baby doesn't have a content problem on either platform — it has a <strong>consistency and optimization</strong> problem. The best videos and posts already beat every competitor; fix YouTube's SEO and budget leaks, tighten Instagram's on-platform basics, and apply the proven formula on each channel to scale what's already working.
         <span class="sub">Lumetrics Video Intelligence &middot; Aveeno Baby Brand Health Briefing</span>
       </div>
+
+      <div class="platform-footer"><span class="dot both"></span>YouTube Data &middot; Instagram Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1805,17 +2285,68 @@
       ]
     };
 
+    // Instagram comment grid (slide "Instagram Comments Are Even More Positive Than YouTube's")
+    var commentDataIG = {
+      'purchase-negative': [],
+      'purchase-neutral': [],
+      'purchase-positive': [
+        "Definitely Shop today 😊"
+      ],
+      'consideration-negative': [],
+      'consideration-neutral': [
+        "Can.U share it .@baby.gram__",
+        "Link",
+        "Is sheglam a good company for tints and makeup products??",
+        "Which oil is the best for baby massage",
+        "Hello ma'am.... I am using pears soap since birth... is it ok"
+      ],
+      'consideration-positive': [
+        "Awesome.. Thank u for the code 🤩",
+        "This is the one product i can vouch for baby skincare.",
+        "Best brand for babies skin 🙏❤",
+        "Ingredients are suitable for soft skins😍",
+        "Would love to try ❤"
+      ],
+      'awareness-negative': [
+        "Worst product ever used",
+        "Sir en name arulmozhi. En husband online game la 15 laks lose panitaga kadan vagi vagi. En gold sale panium kadan kata mudiyala. Veetuku thevaiyana things vaga kooda kasta padran . Ungalala mudicha help pannuvingala please gpay number 9751767357.. En kids kaga irukom  athanala than kenjikren",
+        "Very disappointed with the results I put lot of efforts these 4 days continuously ..tagged more than 200 friends..50 friends follwing both pages for me..liked every post video both accounts..everyday status..I like ur brands very much..not considered my efforts..many joined last day they comment nicely they got selected..@aveenobaby_india @nintarababyindia"
+      ],
+      'awareness-neutral': [
+        "Will try it..",
+        "Sounds gentle for kids 👏❤",
+        "Looks like a great product",
+        "Yeah... their products are good",
+        "It's a great product"
+      ],
+      'awareness-positive': [
+        "One of the best in the market 😍",
+        "Truly the best products and such a cute post ❤️🙌",
+        "Can't agree more 🙌",
+        "I too use ❤️",
+        "My personal fav brand🙌"
+      ],
+      'generic-positive': [
+        "Such a cutie.",
+        "nice",
+        "So nice 😍",
+        "Such an insightful event👍",
+        "This is a good one👏"
+      ]
+    };
+
     var stageLabels = { purchase: 'Purchase', consideration: 'Consideration', awareness: 'Awareness', generic: 'Generic' };
     var sentimentColors = { negative: '#e0685c', neutral: '#7a95c4', positive: '#3ec277' };
+    var sentimentColorsIG = { negative: '#e0685c', neutral: '#7a95c4', positive: '#e1306c' };
 
-    function renderComments(key) {
-      var panel = document.getElementById('comment-panel');
+    function renderCommentsInto(panelId, dataSet, colors, key) {
+      var panel = document.getElementById(panelId);
       var parts = key.split('-');
       var stage = parts[0], sentiment = parts[1];
-      var items = commentData[key] || [];
+      var items = dataSet[key] || [];
 
       var tagHtml = '<div class="comment-panel-tag">' +
-        '<span style="background:' + sentimentColors[sentiment] + '22;color:' + sentimentColors[sentiment] + '">' + sentiment.charAt(0).toUpperCase() + sentiment.slice(1) + '</span>' +
+        '<span style="background:' + colors[sentiment] + '22;color:' + colors[sentiment] + '">' + sentiment.charAt(0).toUpperCase() + sentiment.slice(1) + '</span>' +
         '<span style="background:#eee;color:var(--text)">' + stageLabels[stage] + '</span>' +
         '</div>';
 
@@ -1831,15 +2362,30 @@
       panel.innerHTML = tagHtml + bodyHtml;
     }
 
+    function renderComments(key) {
+      renderCommentsInto('comment-panel', commentData, sentimentColors, key);
+    }
+
+    function renderCommentsIG(key) {
+      renderCommentsInto('comment-panel-ig', commentDataIG, sentimentColorsIG, key);
+    }
+
     document.querySelectorAll('.grid-cell').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        document.querySelectorAll('.grid-cell').forEach(function (b) { b.classList.remove('active'); });
+        var isIG = btn.dataset.source === 'ig';
+        var scope = isIG ? '[data-source="ig"]' : '.grid-cell:not([data-source="ig"])';
+        document.querySelectorAll(scope).forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        renderComments(btn.dataset.key);
+        if (isIG) {
+          renderCommentsIG(btn.dataset.key);
+        } else {
+          renderComments(btn.dataset.key);
+        }
       });
     });
 
     renderComments('generic-positive');
+    renderCommentsIG('generic-positive');
   </script>
 
 </body>
