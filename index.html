@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumetrics — Reports</title>
+<style>
+  :root {
+    --accent: #3ec277;
+    --accent-dark: #1D5634;
+    --ink: #1a1a1a;
+    --muted: #747474;
+    --border: #eaeaea;
+    --bg: #fafafa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+  }
+  header img { height: 28px; width: auto; display: block; }
+  header .tag {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 64px 32px 96px;
+  }
+  .intro { margin-bottom: 48px; }
+  .eyebrow {
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  main > .intro p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(62, 194, 119, 0.14);
+    transform: translateY(-2px);
+  }
+  .logo-wrap {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .logo-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .logo-wrap.pad img { width: 70%; height: 70%; object-fit: contain; }
+  .card .kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .card h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .card p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin: 0 0 20px;
+    flex: 1;
+  }
+  .card .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-dark);
+  }
+  .card .cta svg { transition: transform 0.15s ease; }
+  .card:hover .cta svg { transform: translateX(3px); }
+  footer {
+    padding: 24px 48px;
+    border-top: 1px solid var(--border);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent-dark); text-decoration: underline; }
+  @media (max-width: 560px) {
+    header, main, footer { padding-left: 20px; padding-right: 20px; }
+    h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="assets/lumetrics-logo.svg" alt="Lumetrics">
+  <span class="tag">Reports</span>
+</header>
+
+<main>
+  <div class="intro">
+    <p class="eyebrow">Lumetrics</p>
+    <h1>Brand &amp; Product Reports</h1>
+    <p>Competitive video intelligence decks and product materials, built from real dashboard data.</p>
+  </div>
+
+  <div class="grid">
+
+    <a class="card" href="aveeno.html">
+      <div class="logo-wrap"><img src="assets/brand-logos/aveeno.jpg" alt="Aveeno Baby"></div>
+      <p class="kicker">Brand Report</p>
+      <h2>Aveeno Baby</h2>
+      <p>Competitive engagement, share of voice, sentiment, channel health and content-parameter insight.</p>
+      <span class="cta">View deck
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="denver.html">
+      <div class="logo-wrap"><img src="assets/brand-logos-denver/denver.jpg" alt="Denver For Men"></div>
+      <p class="kicker">Brand Report</p>
+      <h2>Denver For Men</h2>
+      <p>YouTube and Instagram competitive insight with full content-deepdive performance breakdown.</p>
+      <span class="cta">View deck
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="heromoto.html">
+      <div class="logo-wrap"><img src="assets/brand-logos/heromotocorp.jpg" alt="Hero MotoCorp"></div>
+      <p class="kicker">Brand Report</p>
+      <h2>Hero MotoCorp</h2>
+      <p>YouTube-only competitive insight versus Bajaj Auto, TVS Motor and Honda 2Wheelers.</p>
+      <span class="cta">View deck
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="intro.html">
+      <div class="logo-wrap pad"><img src="assets/lumetrics-logo.svg" alt="Lumetrics"></div>
+      <p class="kicker">Product</p>
+      <h2>Video Intelligence Product Intro</h2>
+      <p>The full Lumetrics platform walkthrough — AI modules, workflow and ROI story.</p>
+      <span class="cta">View deck
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <span>&copy; Lumetrics</span>
+  <a href="https://lumetrics.co" target="_blank" rel="noopener">lumetrics.co</a>
+</footer>
+
+</body>
+</html>
