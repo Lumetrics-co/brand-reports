@@ -26,6 +26,14 @@
     --poor: #e0a458;
     --critical: #e0685c;
     --warn-tint: #fceceb;
+    --ig-purple: #833ab4;
+    --ig-pink: #c13584;
+    --ig-magenta: #e1306c;
+    --ig-orange: #f77737;
+    --ig-yellow: #fcaf45;
+    --ig-gradient: linear-gradient(135deg, var(--ig-purple), var(--ig-pink), var(--ig-magenta), var(--ig-orange));
+    --ig-tint: #fdf0f6;
+    --c-denver-ig: var(--ig-magenta);
   }
 
   * { box-sizing: border-box; }
@@ -1103,6 +1111,86 @@
     font-weight: 400;
   }
 
+  /* ===== Instagram-themed slides ===== */
+  .slide.ig-theme {
+    --accent: var(--ig-magenta);
+    --accent-tint: var(--ig-tint);
+  }
+
+  .ig-topbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: var(--ig-gradient);
+  }
+
+  /* ===== Platform source footer ===== */
+  .platform-footer {
+    position: absolute;
+    bottom: 16px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .platform-footer .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .platform-footer .dot.yt { background: #ff0000; }
+  .platform-footer .dot.ig { background: var(--ig-gradient); }
+  .platform-footer .dot.both { background: linear-gradient(90deg, #ff0000 50%, var(--ig-magenta) 50%); }
+
+  /* ===== Placeholder / unavailable-data state ===== */
+  .placeholder-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+    border: 1.5px dashed var(--gridline);
+    border-radius: 14px;
+    padding: 40px;
+  }
+
+  .placeholder-box .placeholder-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--warn-tint);
+    color: var(--critical);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .placeholder-box .placeholder-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .placeholder-box .placeholder-body {
+    font-size: 13.5px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.5;
+  }
+
   /* ===== Keyframes ===== */
   @keyframes draw {
     to { stroke-dashoffset: 0; }
@@ -1223,6 +1311,7 @@
       <h1 class="cover-title">Denver For Men's <span class="hl">Video Strategy</span>, Decoded</h1>
       <p class="cover-subtitle">What's winning, what's wasting budget, and the data-backed formula for the next video — a full-funnel video intelligence briefing powered by Lumetrics.</p>
       <div class="cover-meta">Competitive Insight &middot; Share of Voice &amp; Mind &middot; Comment Sentiment &middot; Channel Health &middot; Content Deepdive</div>
+      <div class="platform-footer"><span class="dot both"></span>YouTube Data &middot; Instagram Data &middot; Lumetrics</div>
     </section>
 
     <section class="slide">
@@ -1341,6 +1430,8 @@
       <div class="takeaway-bar">
         Denver's lifetime engagement (<strong>2,311.56</strong>) sits just 9% behind category leader <strong>wildstoneofficial</strong> (2,548.95) — remarkable for a channel with <strong>1.2% of its subscriber base</strong> (8.8K vs 7.15L). Nearly all of Denver's positive Consideration-stage comments name-check its Shah Rukh Khan association directly — a celebrity moat competitors can't easily copy. But this lifetime strength hasn't carried into the current period (1 Mar&ndash;31 Aug 2026) — see next.
       </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1461,6 +1552,8 @@
         Denver's Voice Share collapsed from <strong>13.25% to 5.06%</strong> and Mind Share from <strong>20.50% to 0.47%</strong> between the lifetime baseline and the current period — Engage deo took the voice lead (51.72%) as Denver's output slowed. *ENVY's 61.01% current Mind Share is driven by a single viral video (n=1) and isn't a reliable competitive signal — read it with caution.
       </div>
 
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
     </section>
 
     <section class="slide">
@@ -1500,6 +1593,8 @@
         </div>
 
       </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1569,6 +1664,8 @@
         </div>
 
       </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1682,6 +1779,484 @@
         8 of 11 parameters clear the 20% bar — led by <strong>Content Lifespan</strong> (Evergreen, +775.8%), <strong>Gender Mix</strong> (All Male among on-camera options, +187.2%), <strong>Movements Used</strong> (Dolly Out, +147.6%) and <strong>Trust Signals Used</strong> (Data/Statistics, +134.0%). Treat <strong>Category</strong> and <strong>Narrative Structure</strong> as a reasonable best guess, not a certainty — neither cleared the bar.
       </div>
 
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- INSTAGRAM SLIDES                                              -->
+    <!-- ============================================================ -->
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Competitive Insight &middot; Instagram &middot; Deodorants &amp; Perfumes &middot; Lifetime Engagement Benchmark</div>
+      <h1>Small Scale, Middling Resonance: Denver's Breakout Posts Rank 4th of 6</h1>
+
+      <div class="story-body">
+
+        <div class="stat-col">
+          <div class="hero-label">Avg. engagement on posts with 100K&ndash;1M views</div>
+          <div class="hero-number" data-target="7597" data-decimals="0">0</div>
+          <div class="hero-delta">4.7&times; behind category leader</div>
+
+          <div class="rank-list">
+            <div class="rank-row">
+              <span class="rank-logo-badge" style="background:var(--c-envy)">EN</span>
+              <span class="rank-name">ENVY</span>
+              <span class="rank-value">35,526.00</span>
+            </div>
+            <div class="rank-row">
+              <span class="rank-logo-badge" style="background:var(--c-fraganote)">FN</span>
+              <span class="rank-name">Fraganote</span>
+              <span class="rank-value">22,538.33</span>
+            </div>
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos-denver/wildstoneofficial.jpg" alt="Wild Stone">
+              <span class="rank-name">Wild Stone</span>
+              <span class="rank-value">14,033.25</span>
+            </div>
+            <div class="rank-row hero-row">
+              <img class="rank-logo" src="assets/brand-logos-denver/denver.jpg" alt="Denver For Men">
+              <span class="rank-name">Denver For Men</span>
+              <span class="rank-value">7,597.00</span>
+            </div>
+            <div class="rank-row">
+              <span class="rank-logo-badge" style="background:var(--c-bellavita)">BV</span>
+              <span class="rank-name">BELLAVITA</span>
+              <span class="rank-value">914.62</span>
+            </div>
+            <div class="rank-row">
+              <span class="rank-logo-badge" style="background:var(--c-engagedeo)">ED</span>
+              <span class="rank-name">Engage</span>
+              <span class="rank-value">0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-col">
+          <div class="chart-heading">Reach vs. Resonance <span>&mdash; posts with 100K&ndash;1M views, by brand, lifetime</span></div>
+          <svg class="scatter" viewBox="0 0 640 364" preserveAspectRatio="xMidYMid meet">
+            <!-- gridlines -->
+            <line class="gridline" x1="60" y1="222.2" x2="620" y2="222.2"></line>
+            <text class="tick" x="52" y="226.2" text-anchor="end">10,000</text>
+            <line class="gridline" x1="60" y1="144.4" x2="620" y2="144.4"></line>
+            <text class="tick" x="52" y="148.4" text-anchor="end">20,000</text>
+
+            <!-- axes -->
+            <line class="axis-line animate" pathLength="1" x1="60" y1="20" x2="60" y2="300"></line>
+            <line class="axis-line animate" pathLength="1" x1="60" y1="300" x2="620" y2="300"></line>
+
+            <!-- x ticks -->
+            <text class="tick" x="60" y="330" text-anchor="middle">0</text>
+            <text class="tick" x="220" y="330" text-anchor="middle">10</text>
+            <text class="tick" x="380" y="330" text-anchor="middle">20</text>
+            <text class="tick" x="604" y="330" text-anchor="middle">34</text>
+
+            <text class="axis-title" x="340" y="356" text-anchor="middle">Posts with 100K&ndash;1M views (reach) &#8594;</text>
+            <text class="axis-title" x="-160" y="16" text-anchor="middle" transform="rotate(-90)">Avg. engagement &#8594;</text>
+
+            <!-- data points: cx,cy from (posts, avgEngagement), domain x:0-34, y:0-36000 -->
+
+            <!-- Engage (0, 0) -->
+            <circle class="dot-ring competitor" cx="60" cy="300" r="15" style="animation-delay:0.7s"></circle>
+            <g class="logo-mark-fill" style="animation-delay:0.7s">
+              <circle cx="60" cy="300" r="13" fill="var(--c-engagedeo)"></circle>
+              <text x="60" y="300" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="800" fill="#fff">ED</text>
+            </g>
+
+            <!-- BELLAVITA (34, 914.62) -->
+            <circle class="dot-ring competitor" cx="604" cy="292.9" r="15" style="animation-delay:0.75s"></circle>
+            <g class="logo-mark-fill" style="animation-delay:0.75s">
+              <circle cx="604" cy="292.9" r="13" fill="var(--c-bellavita)"></circle>
+              <text x="604" y="292.9" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="800" fill="#fff">BV</text>
+            </g>
+
+            <!-- Wild Stone (4, 14033.25) -->
+            <circle class="dot-ring competitor" cx="124" cy="190.85" r="17" style="animation-delay:0.8s"></circle>
+            <image class="logo-mark" x="111" y="177.85" width="26" height="26" href="assets/brand-logos-denver/wildstoneofficial.jpg" style="animation-delay:0.8s"></image>
+
+            <!-- Fraganote (3, 22538.33) -->
+            <circle class="dot-ring competitor" cx="108" cy="124.7" r="16" style="animation-delay:0.85s"></circle>
+            <g class="logo-mark-fill" style="animation-delay:0.85s">
+              <circle cx="108" cy="124.7" r="14" fill="var(--c-fraganote)"></circle>
+              <text x="108" y="124.7" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="800" fill="#fff">FN</text>
+            </g>
+
+            <!-- ENVY (4, 35526) -->
+            <circle class="dot-ring competitor" cx="124" cy="23.68" r="16" style="animation-delay:0.9s"></circle>
+            <g class="logo-mark-fill" style="animation-delay:0.9s">
+              <circle cx="124" cy="23.68" r="14" fill="var(--c-envy)"></circle>
+              <text x="124" y="23.68" text-anchor="middle" dominant-baseline="central" font-size="9.5" font-weight="800" fill="#fff">EN</text>
+            </g>
+
+            <!-- Denver For Men (2, 7597) — the hero -->
+            <circle class="dot-ring denver" cx="92" cy="240.9" r="22" style="animation-delay:0.6s"></circle>
+            <image class="logo-mark" x="73" y="221.9" width="38" height="38" href="assets/brand-logos-denver/denver.jpg" style="animation-delay:0.6s"></image>
+            <text class="dot-value" x="92" y="205" text-anchor="middle" style="animation-delay:1.0s">7,597</text>
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        Denver posted only <strong>2</strong> breakout posts (100K&ndash;1M views) lifetime &mdash; fewer than every tracked competitor except Engage (0) &mdash; and their avg. engagement (<strong>7,597</strong>) trails ENVY (35,526), Fraganote (22,538) and Wild Stone (14,033). Unlike YouTube, where Denver's celebrity-driven content rivals the category leader, Instagram shows a <strong>scale problem</strong>: too few breakout posts to build a reliable resonance signal.
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Brand Health &middot; Share of Voice &amp; Mind &middot; Instagram &middot; 1 Mar &ndash; 31 Aug 2026</div>
+      <h1>Share of Voice &amp; Mind: Lifetime vs. Current Period</h1>
+
+      <div class="story-body single-col">
+
+        <div class="brand-legend">
+          <span class="item"><img src="assets/brand-logos-denver/denver.jpg" alt="">Denver</span>
+          <span class="item"><span class="letter-badge" style="background:var(--c-bellavita)">BV</span>BELLAVITA</span>
+          <span class="item"><span class="letter-badge" style="background:var(--c-engagedeo)">ED</span>Engage</span>
+          <span class="item"><span class="letter-badge" style="background:var(--c-fraganote)">FN</span>Fraganote</span>
+          <span class="item"><span class="letter-badge" style="background:var(--c-envy)">EN</span>ENVY</span>
+          <span class="item"><img src="assets/brand-logos-denver/wildstoneofficial.jpg" alt="">Wild Stone</span>
+          <span class="item"><span class="letter-badge" style="background:var(--c-blablilu)">BB</span>BLABLIBLU&reg;</span>
+        </div>
+
+        <div class="pie-grid">
+
+          <!-- SOV Lifetime -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Voice <span>&middot; Lifetime</span></div>
+            <div class="donut-wrap" style="animation-delay:0.15s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-denver-ig)" stroke-width="20" stroke-dasharray="11.37 334.21" stroke-dashoffset="0" style="animation-delay:0.3s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bellavita)" stroke-width="20" stroke-dasharray="144.51 201.07" stroke-dashoffset="-11.37" style="animation-delay:0.35s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-engagedeo)" stroke-width="20" stroke-dasharray="2.45 343.13" stroke-dashoffset="-155.88" style="animation-delay:0.38s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-fraganote)" stroke-width="20" stroke-dasharray="28.92 316.66" stroke-dashoffset="-158.33" style="animation-delay:0.4s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-envy)" stroke-width="20" stroke-dasharray="24.67 320.91" stroke-dashoffset="-187.25" style="animation-delay:0.42s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-wildstone)" stroke-width="20" stroke-dasharray="113.20 232.38" stroke-dashoffset="-211.92" style="animation-delay:0.45s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-blablilu)" stroke-width="20" stroke-dasharray="20.46 325.12" stroke-dashoffset="-325.12" style="animation-delay:0.48s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">BELLAVITA</div>
+                <div class="leader-pct">41.82%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SOV Current -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Voice <span>&middot; 1 Mar&ndash;31 Aug 2026</span></div>
+            <div class="donut-wrap" style="animation-delay:0.3s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-denver-ig)" stroke-width="20" stroke-dasharray="11.85 333.73" stroke-dashoffset="0" style="animation-delay:0.45s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bellavita)" stroke-width="20" stroke-dasharray="133.91 211.67" stroke-dashoffset="-11.85" style="animation-delay:0.5s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-engagedeo)" stroke-width="20" stroke-dasharray="2.32 343.26" stroke-dashoffset="-145.76" style="animation-delay:0.53s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-fraganote)" stroke-width="20" stroke-dasharray="33.07 312.51" stroke-dashoffset="-148.08" style="animation-delay:0.55s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-envy)" stroke-width="20" stroke-dasharray="28.13 317.45" stroke-dashoffset="-181.15" style="animation-delay:0.58s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-wildstone)" stroke-width="20" stroke-dasharray="118.87 226.71" stroke-dashoffset="-209.28" style="animation-delay:0.6s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-blablilu)" stroke-width="20" stroke-dasharray="17.38 328.20" stroke-dashoffset="-328.15" style="animation-delay:0.63s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">BELLAVITA</div>
+                <div class="leader-pct">38.75%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pie-divider"></div>
+
+          <!-- SOM Lifetime -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Mind <span>&middot; Lifetime</span></div>
+            <div class="donut-wrap" style="animation-delay:0.45s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-denver-ig)" stroke-width="20" stroke-dasharray="22.60 322.98" stroke-dashoffset="0" style="animation-delay:0.6s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bellavita)" stroke-width="20" stroke-dasharray="21.46 324.12" stroke-dashoffset="-22.60" style="animation-delay:0.63s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-engagedeo)" stroke-width="20" stroke-dasharray="32.20 313.38" stroke-dashoffset="-44.06" style="animation-delay:0.65s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-fraganote)" stroke-width="20" stroke-dasharray="43.23 302.35" stroke-dashoffset="-76.26" style="animation-delay:0.68s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-envy)" stroke-width="20" stroke-dasharray="101.79 243.79" stroke-dashoffset="-119.49" style="animation-delay:0.7s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-wildstone)" stroke-width="20" stroke-dasharray="88.42 257.16" stroke-dashoffset="-221.28" style="animation-delay:0.73s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-blablilu)" stroke-width="20" stroke-dasharray="35.83 309.75" stroke-dashoffset="-309.70" style="animation-delay:0.75s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">ENVY</div>
+                <div class="leader-pct">29.46%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SOM Current -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Mind <span>&middot; 1 Mar&ndash;31 Aug 2026</span></div>
+            <div class="donut-wrap" style="animation-delay:0.6s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-denver-ig)" stroke-width="20" stroke-dasharray="15.24 330.34" stroke-dashoffset="0" style="animation-delay:0.75s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bellavita)" stroke-width="20" stroke-dasharray="19.39 326.19" stroke-dashoffset="-15.24" style="animation-delay:0.78s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-engagedeo)" stroke-width="20" stroke-dasharray="22.32 323.26" stroke-dashoffset="-34.63" style="animation-delay:0.8s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-fraganote)" stroke-width="20" stroke-dasharray="45.02 300.56" stroke-dashoffset="-56.95" style="animation-delay:0.83s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-envy)" stroke-width="20" stroke-dasharray="113.65 231.93" stroke-dashoffset="-101.97" style="animation-delay:0.85s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-wildstone)" stroke-width="20" stroke-dasharray="93.75 251.83" stroke-dashoffset="-215.62" style="animation-delay:0.88s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-blablilu)" stroke-width="20" stroke-dasharray="36.14 309.44" stroke-dashoffset="-309.37" style="animation-delay:0.9s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">ENVY</div>
+                <div class="leader-pct">32.89%</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        <strong>BELLAVITA leads Voice Share</strong> both lifetime (41.82%) and currently (38.75%), while <strong>ENVY leads Mind Share</strong> both lifetime (29.46%) and currently (32.89%). Denver holds a modest but stable <strong>3&ndash;4% Voice</strong> / <strong>4&ndash;7% Mind</strong> Share across both windows &mdash; never leading, but not collapsing either, unlike its YouTube current-period drop.
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Audience Sentiment &middot; Marketing Funnel &middot; Instagram Comment Analysis &middot; Lifetime &middot; 373 comments analysed</div>
+      <h1>60.9% Positive — Instagram Skews Far More Positive Than YouTube's 53.2%</h1>
+
+      <div class="story-body">
+
+        <div class="funnel-grid-col">
+          <div class="funnel-grid">
+            <div></div>
+            <div class="col-head">Negative</div>
+            <div class="col-head">Neutral</div>
+            <div class="col-head">Positive</div>
+
+            <div class="row-label">Purchase</div>
+            <button class="grid-cell" data-source="ig" data-key="purchase-negative" style="background:rgba(224,104,92,0.10);animation-delay:0.1s">0<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="purchase-neutral" style="background:rgba(122,149,196,0.10);animation-delay:0.15s">0<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="purchase-positive" style="background:rgba(62,194,119,0.10);animation-delay:0.2s">0<span class="cell-hint">comments</span></button>
+
+            <div class="row-label">Consideration</div>
+            <button class="grid-cell" data-source="ig" data-key="consideration-negative" style="background:rgba(224,104,92,0.16);animation-delay:0.25s">5<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="consideration-neutral" style="background:rgba(122,149,196,0.24);animation-delay:0.3s">13<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="consideration-positive" style="background:rgba(62,194,119,0.10);animation-delay:0.35s">0<span class="cell-hint">comments</span></button>
+
+            <div class="row-label">Awareness</div>
+            <button class="grid-cell" data-source="ig" data-key="awareness-negative" style="background:rgba(224,104,92,0.28);animation-delay:0.4s">16<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="awareness-neutral" style="background:rgba(122,149,196,0.24);animation-delay:0.45s">13<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-source="ig" data-key="awareness-positive" style="background:rgba(62,194,119,0.70);color:#fff;animation-delay:0.5s">54<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+          </div>
+        </div>
+
+        <div class="comment-col">
+          <div class="chart-heading">Real Comments <span>&mdash; click a cell to load up to 5 examples</span></div>
+          <div class="comment-panel" id="comment-panel-ig"></div>
+        </div>
+
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Brand Analysis &middot; Channel Health &middot; Instagram SEO Audit &middot; 1 Mar &ndash; 31 Aug 2026</div>
+      <h1>A 77/100 Quality Score — Instagram's Content Is Solid, Its Reach Isn't</h1>
+
+      <div class="channel-slide-body">
+
+        <div class="health-row" style="animation-delay:0.1s">
+          <div class="health-score-block">
+            <div class="health-score-value"><span class="hero-number" data-target="77" data-decimals="0">0</span><span class="of100">/100</span></div>
+            <div class="health-score-label">Avg. Quality Score across 19 posts, 1 Mar&ndash;31 Aug 2026</div>
+          </div>
+          <div class="health-bar-wrap">
+            <div class="health-bar-title">Post Score Distribution</div>
+            <div class="health-bar">
+              <div class="seg seg-good" style="width:0%;animation-delay:0.3s"></div>
+              <div class="seg seg-average" style="width:100%;animation-delay:0.35s">19</div>
+              <div class="seg seg-poor" style="width:0%;animation-delay:0.4s"></div>
+              <div class="seg seg-critical" style="width:0%;animation-delay:0.45s"></div>
+            </div>
+            <div class="health-legend">
+              <span><span class="dot" style="background:var(--good)"></span>Good (80&ndash;100): <b>0</b></span>
+              <span><span class="dot" style="background:var(--average)"></span>Average (55&ndash;79): <b>19</b></span>
+              <span><span class="dot" style="background:var(--poor)"></span>Poor (30&ndash;54): <b>0</b></span>
+              <span><span class="dot" style="background:var(--critical)"></span>Critical (0&ndash;29): <b>0</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="waste-row">
+
+          <div class="waste-col" style="animation-delay:0.2s">
+            <div class="waste-title">Where the Ad Spend Leaks</div>
+            <div class="waste-subtitle">1 Mar &ndash; 31 Aug 2026 &middot; Cost-Benefit Analysis</div>
+            <div class="funnel-list">
+              <div class="funnel-row"><span>Posts created</span><b>19</b></div>
+              <div class="funnel-row"><span>Crossed 5,000 views</span><b>7</b></div>
+              <div class="funnel-row"><span>Stuck under 5,000 views</span><b>12</b></div>
+              <div class="funnel-row"><span>Spend on those 12 (&#8377;8,000/post)</span><b>&#8377;96,000</b></div>
+              <div class="funnel-row"><span>Views earned by those 12</span><b>19,290</b></div>
+            </div>
+            <div class="warn-hero-wrap">
+              <div class="warn-hero hero-number" data-target="4.98" data-decimals="2" data-prefix="&#8377;">0</div>
+              <div class="warn-hero-label">cost per view on underperforming posts</div>
+            </div>
+            <div class="warn-callout">
+              <strong>&#8377;96,000 spent, only 19,290 views back.</strong> Unlike the quality score, reach is wildly inconsistent &mdash; 7 posts break out while 12 barely register.
+            </div>
+          </div>
+
+          <div class="waste-col" style="animation-delay:0.35s">
+            <div class="waste-title">Engagement Below 0.5%</div>
+            <div class="waste-subtitle">1 Mar &ndash; 31 Aug 2026 &middot; all 19 posts published</div>
+            <div class="warn-hero-wrap">
+              <div class="warn-hero hero-number" style="color:var(--good)" data-target="0" data-decimals="0" data-suffix="/19">0</div>
+              <div class="warn-hero-label">posts with engagement rate under 0.5%</div>
+            </div>
+            <div class="engagement-visual"><span class="dot-cell" style="animation-delay:0.60s"></span><span class="dot-cell" style="animation-delay:0.61s"></span><span class="dot-cell" style="animation-delay:0.62s"></span><span class="dot-cell" style="animation-delay:0.63s"></span><span class="dot-cell" style="animation-delay:0.64s"></span><span class="dot-cell" style="animation-delay:0.65s"></span><span class="dot-cell" style="animation-delay:0.66s"></span><span class="dot-cell" style="animation-delay:0.67s"></span><span class="dot-cell" style="animation-delay:0.68s"></span><span class="dot-cell" style="animation-delay:0.69s"></span><span class="dot-cell" style="animation-delay:0.70s"></span><span class="dot-cell" style="animation-delay:0.71s"></span><span class="dot-cell" style="animation-delay:0.72s"></span><span class="dot-cell" style="animation-delay:0.73s"></span><span class="dot-cell" style="animation-delay:0.74s"></span><span class="dot-cell" style="animation-delay:0.75s"></span><span class="dot-cell" style="animation-delay:0.76s"></span><span class="dot-cell" style="animation-delay:0.77s"></span><span class="dot-cell" style="animation-delay:0.78s"></span></div>
+            <div class="warn-callout">
+              <strong style="color:var(--good)">Every single post published this period cleared 0.5% engagement.</strong> Content quality isn't the bottleneck on Instagram &mdash; distribution and reach are.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide ig-theme">
+      <div class="ig-topbar"></div>
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Content Deepdive &middot; Instagram &middot; Video Dissection Framework</div>
+      <h1>8 of 11 Instagram Parameters Have a Clear Winner</h1>
+
+      <div class="story-body single-col">
+
+        <div class="params-note">Dissected sample: <b>10 videos</b> (full Instagram corpus) &times; the same YouTube Video Dissection Framework, scored by engagement rate. A parameter has a <b>clear winner</b> only when the leader beats the runner-up by more than 20%. <b>Narrative Structure</b> shows zero variation &mdash; every video in the corpus shares the same value, so no comparison is possible. <b>Animation Types Used</b> is an exact tie between two tags on the same single video. The row marked <b>*</b> had "Not Applicable" (no visible cast) as the literal top performer &mdash; the formula strip substitutes the best actionable alternative.</div>
+
+        <div class="param-board">
+          <div class="param-row winner" style="animation-delay:0.05s">
+            <span class="param-dot"></span>
+            <span class="param-name">Category</span>
+            <span class="param-leader">Motivation<span class="val">17.39%</span></span>
+            <span class="param-runner">vs Entertainment<span class="val">3.64%</span></span>
+            <span class="param-dev">+377.7%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.1s">
+            <span class="param-dot"></span>
+            <span class="param-name">Content Lifespan</span>
+            <span class="param-leader">Evergreen<span class="val">5.00%</span></span>
+            <span class="param-runner">vs Hybrid<span class="val">1.23%</span></span>
+            <span class="param-dev">+306.5%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.15s">
+            <span class="param-dot"></span>
+            <span class="param-name">Format Archetype</span>
+            <span class="param-leader">Case Study<span class="val">17.39%</span></span>
+            <span class="param-runner">vs Unboxing<span class="val">7.07%</span></span>
+            <span class="param-dev">+146.0%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.2s">
+            <span class="param-dot"></span>
+            <span class="param-name">Primary Hook Type</span>
+            <span class="param-leader">Visual Surprise<span class="val">4.26%</span></span>
+            <span class="param-runner">vs Result Reveal<span class="val">1.69%</span></span>
+            <span class="param-dev">+152.1%</span>
+          </div>
+          <div class="param-row" style="animation-delay:0.25s">
+            <span class="param-dot"></span>
+            <span class="param-name">Narrative Structure</span>
+            <span class="param-leader">Pure Narrative<span class="val">4.18%</span></span>
+            <span class="param-runner">no variation across corpus</span>
+            <span class="param-dev">N/A</span>
+          </div>
+          <div class="param-row" style="animation-delay:0.3s">
+            <span class="param-dot"></span>
+            <span class="param-name">Movements Used</span>
+            <span class="param-leader">Tracking<span class="val">4.75%</span></span>
+            <span class="param-runner">vs Dolly In<span class="val">4.18%</span></span>
+            <span class="param-dev">+13.6%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.35s">
+            <span class="param-dot"></span>
+            <span class="param-name">Gender Mix *</span>
+            <span class="param-leader">Not Applicable<span class="val">12.46%</span></span>
+            <span class="param-runner">vs All Male<span class="val">2.90%</span></span>
+            <span class="param-dev">+329.7%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.4s">
+            <span class="param-dot"></span>
+            <span class="param-name">Age Group(s) Shown</span>
+            <span class="param-leader">Gen Z<span class="val">6.78%</span></span>
+            <span class="param-runner">vs Gen X<span class="val">3.18%</span></span>
+            <span class="param-dev">+113.2%</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.45s">
+            <span class="param-dot"></span>
+            <span class="param-name">Narration Style</span>
+            <span class="param-leader">Inspirational<span class="val">17.39%</span></span>
+            <span class="param-runner">vs Conversational<span class="val">6.17%</span></span>
+            <span class="param-dev">+181.8%</span>
+          </div>
+          <div class="param-row" style="animation-delay:0.5s">
+            <span class="param-dot"></span>
+            <span class="param-name">Animation Types Used</span>
+            <span class="param-leader">Kinetic Typography<span class="val">33.10%</span></span>
+            <span class="param-runner">= Motion Graphics Data Viz<span class="val">33.10%</span></span>
+            <span class="param-dev">tied</span>
+          </div>
+          <div class="param-row winner" style="animation-delay:0.55s">
+            <span class="param-dot"></span>
+            <span class="param-name">Trust Signals Used</span>
+            <span class="param-leader">Credentials<span class="val">2.90%</span></span>
+            <span class="param-runner">vs Live Demonstrations<span class="val">1.69%</span></span>
+            <span class="param-dev">+71.6%</span>
+          </div>
+        </div>
+
+        <div class="formula-title">Recommended Content Formula <span>&mdash; top performer per parameter; green = statistically clear winner</span></div>
+        <div class="formula-strip">
+          <span class="formula-chip winner" style="animation-delay:0.6s"><b>Motivation</b> category</span>
+          <span class="formula-chip winner" style="animation-delay:0.63s"><b>Evergreen</b> lifespan</span>
+          <span class="formula-chip winner" style="animation-delay:0.66s"><b>Case Study</b> format</span>
+          <span class="formula-chip winner" style="animation-delay:0.69s"><b>Visual Surprise</b> hook</span>
+          <span class="formula-chip" style="animation-delay:0.72s"><b>Pure Narrative</b> narrative</span>
+          <span class="formula-chip" style="animation-delay:0.75s"><b>Tracking</b> movement</span>
+          <span class="formula-chip winner" style="animation-delay:0.78s"><b>All Male</b> cast*</span>
+          <span class="formula-chip winner" style="animation-delay:0.81s"><b>Gen Z</b> talent shown</span>
+          <span class="formula-chip winner" style="animation-delay:0.84s"><b>Inspirational</b> narration</span>
+          <span class="formula-chip" style="animation-delay:0.87s"><b>Kinetic Typography</b> animation</span>
+          <span class="formula-chip winner" style="animation-delay:0.9s"><b>Credentials</b> as trust signal</span>
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        <strong>8 of 11 parameters clear the 20% bar</strong> on this 10-video corpus &mdash; led by <strong>Category</strong> (Motivation, +377.7%), <strong>Content Lifespan</strong> (Evergreen, +306.5%) and <strong>Gender Mix*</strong> (all-male cast scenes, +329.7%). <strong>Narrative Structure</strong> shows zero variation (every video is Pure Narrative), and <strong>Animation Types Used</strong> is an exact tie driven by a single video &mdash; neither produces a meaningful comparison. Only <strong>Movements Used</strong> (Tracking vs. Dolly In, +13.6%) is a genuine close race.
+      </div>
+
+      <div class="platform-footer"><span class="dot ig"></span>Instagram Data &middot; Lumetrics</div>
+
     </section>
 
     <section class="slide">
@@ -1694,42 +2269,44 @@
         <div class="verdict-card strength" style="animation-delay:0.1s">
           <div class="verdict-icon">&#9733;</div>
           <div class="verdict-title">Strength</div>
-          <div class="verdict-subtitle">Lifetime performance rivals the category leader</div>
+          <div class="verdict-subtitle">When it lands, nothing else comes close — on either platform</div>
           <ul class="verdict-list">
-            <li>Lifetime avg. engagement of <b>2,311.56</b> is 3rd of 7 tracked brands — just 9% behind leader wildstoneofficial, from <b>1.2%</b> of its subscribers</li>
-            <li>Mind Share held at <b>20.50%</b> lifetime despite a Voice Share of only <b>13.25%</b> — a healthy +7.25pp divergence</li>
-            <li><b>53.2%</b> of all comments channel-wide are positive; the Shah Rukh Khan association drives virtually all Consideration-stage positive buzz</li>
+            <li>YouTube: lifetime avg. engagement of <b>2,311.56</b> is 3rd of 7 tracked brands — just 9% behind leader wildstoneofficial, from <b>1.2%</b> of its subscribers; Mind Share <b>20.50%</b> vs. Voice Share <b>13.25%</b>; <b>53.2%</b> of comments are positive</li>
+            <li>Instagram: Quality Score averages <b>77/100</b> across every current-period post — zero posts rated below "Average," and <b>60.9%</b> of comments are positive (vs. YouTube's 53.2%)</li>
+            <li>The Shah Rukh Khan association is a shared moat on both platforms — it drives nearly all Consideration-stage positive buzz on YouTube and the bulk of Awareness-stage positive comments on Instagram</li>
           </ul>
         </div>
 
         <div class="verdict-card risk" style="animation-delay:0.25s">
           <div class="verdict-icon">!</div>
           <div class="verdict-title">Risk</div>
-          <div class="verdict-subtitle">The current period is running on paid reach and one celebrity</div>
+          <div class="verdict-subtitle">Reach is the shared failure mode, not content quality</div>
           <ul class="verdict-list">
-            <li>Voice Share fell <b>13.25% &rarr; 5.06%</b> and Mind Share <b>20.50% &rarr; 0.47%</b>, Mar&ndash;Aug 2026</li>
-            <li>Lifetime Channel Health Score is <b>23/100</b>, with <b>67.5%</b> of all 203 videos rated Critical; <b>100%</b> (15/15) of current-period videos sit under 0.5% engagement</li>
-            <li>Current-period reach is <b>99.8%</b> propped up by 2 paid/boosted launches (&#8377;9.47 cost-per-view on the rest); celebrity-boycott sentiment is a recurring theme in negative comments</li>
+            <li>YouTube: Voice Share fell <b>13.25% &rarr; 5.06%</b> and Mind Share <b>20.50% &rarr; 0.47%</b> Mar&ndash;Aug 2026; Channel Health Score <b>23/100</b> lifetime; <b>100%</b> of current-period videos sit under 0.5% engagement; current reach is <b>99.8%</b> paid/boosted</li>
+            <li>Instagram: only <b>2</b> lifetime breakout posts (100K&ndash;1M views) — fewer than every competitor but one — and <b>12 of 19</b> current-period posts stuck under 5,000 views (&#8377;4.98 cost-per-view on those 12)</li>
+            <li>Voice/Mind Share never exceeds single digits on Instagram either (<b>3&ndash;4%</b> Voice, <b>4&ndash;7%</b> Mind) — smaller but at least stable, unlike YouTube's collapse</li>
           </ul>
         </div>
 
         <div class="verdict-card opportunity" style="animation-delay:0.4s">
           <div class="verdict-icon">&#8594;</div>
           <div class="verdict-title">Opportunity</div>
-          <div class="verdict-subtitle">A proven formula, ready to apply — with less dependency</div>
+          <div class="verdict-subtitle">A proven YouTube formula, plus an Instagram reach fix</div>
           <ul class="verdict-list">
-            <li><b>8 of 11</b> content parameters show a statistically clear winner (&gt;20% lead) at N=21</li>
-            <li>Proven formula: <b>Evergreen</b> lifespan, <b>Problem Statement</b> hook, <b>Dolly Out</b> movement, <b>Motion Graphics</b> animation, <b>Data/Statistics</b> trust signals</li>
-            <li>Sustaining organic upload volume and diversifying beyond a single celebrity moat turns a lifetime strength into a lower-risk, repeatable system</li>
+            <li>YouTube: <b>8 of 11</b> content parameters show a statistically clear winner (&gt;20% lead) at N=21 — <b>Evergreen</b> lifespan, <b>Problem Statement</b> hook, <b>Dolly Out</b> movement, <b>Motion Graphics</b> animation, <b>Data/Statistics</b> trust signals</li>
+            <li>Instagram: <b>8 of 11</b> parameters show a clear winner (&gt;20% lead) at N=10 &mdash; <b>Motivation</b> category, <b>Evergreen</b> lifespan, <b>Case Study</b> format, <b>Gen Z</b> talent, <b>Inspirational</b> narration (+71&ndash;378% lift); the 77/100 quality score says the formula already works, only distribution needs fixing</li>
+            <li>Sustaining organic upload volume and diversifying beyond a single celebrity moat turns a lifetime strength into a lower-risk, repeatable system on both platforms</li>
           </ul>
         </div>
 
       </div>
 
       <div class="verdict-bottom-line" style="animation-delay:0.6s">
-        Denver doesn't have a content-quality problem — its best work already rivals the category leader on a fraction of the audience. It has a <strong>consistency and dependency</strong> problem: reach collapsed the moment paid boosts and celebrity buzz cooled. Lock in the 8 proven parameters, sustain organic output, and reduce reliance on a single celebrity association.
+        Denver doesn't have a content-quality problem on either platform — its best YouTube videos rival the category leader, and its Instagram posts average a strong 77/100 quality score. It has a <strong>reach and consistency</strong> problem: YouTube's current period is propped up by paid boosts, and Instagram's breakout posts are too rare (2 lifetime) to build a reliable resonance signal. Lock in the 8 proven YouTube parameters, sustain organic output on both channels, and reduce reliance on a single celebrity association.
         <span class="sub">Lumetrics Video Intelligence &middot; Denver For Men Brand Health Briefing</span>
       </div>
+
+      <div class="platform-footer"><span class="dot both"></span>YouTube Data &middot; Instagram Data &middot; Lumetrics</div>
 
     </section>
 
@@ -1894,17 +2471,67 @@
       ]
     };
 
+    // Instagram comment grid (slide "60.9% Positive — Instagram Skews Far More Positive Than YouTube's 53.2%")
+    var commentDataIG = {
+      'purchase-negative': [],
+      'purchase-neutral': [],
+      'purchase-positive': [],
+      'consideration-negative': [
+        "It isn't available in nepal 😭😭 that intense one",
+        "Ktine time tak project karta hai perfume??",
+        "This is fake my not order not delivered yet",
+        "No update on my order ..... Even after giving the order id",
+        "Price"
+      ],
+      'consideration-neutral': [
+        "Cast me in your next shoot too pls🙌",
+        "Any in uk 🇬🇧??",
+        "How to order",
+        "Price",
+        "Kitna long lasting hai?"
+      ],
+      'awareness-negative': [
+        "Disappointed with the service! Ordered 3 perfumes (Order ID: DEN432613), but received only 1. Customer care unresponsive.",
+        "Missing in my order and no one is responding.",
+        "Very bad service! My order 345924 is delayed for 4 days and customer care is disconnecting my calls.",
+        "The product which is received by me today is expired and some of bottles has no expiry dates.",
+        "Hardwork never pays"
+      ],
+      'awareness-neutral': [
+        "Smart work pays",
+        "😍can we do a collaboration",
+        "Collab",
+        "@ardiaantertini he's a billionaire son 🫩",
+        "For his golden humblest heart🙏🏻🙏🏻🙏🏻🙏🏻😭😭😭😭👑"
+      ],
+      'awareness-positive': [
+        "THE KING 👑🌍",
+        "SRK The King of Cinema 👑❤️",
+        "Me Big fan of Denver ❤️",
+        "PEOPLE ... MY 30 TH BOTTLE ..... I CAN BET THAT THESE ARE THE BEST PERFUMES",
+        "This fragrance range looks perfect for everyday use. The packaging is really premium"
+      ],
+      'generic-positive': [
+        "❤️❤️❤️❤️❤️❤️🙌🔥",
+        "❤️❤️❤️❤️",
+        "❤️",
+        "❤️",
+        "❤️srk....."
+      ]
+    };
+
     var stageLabels = { purchase: 'Purchase', consideration: 'Consideration', awareness: 'Awareness', generic: 'Generic' };
     var sentimentColors = { negative: '#e0685c', neutral: '#7a95c4', positive: '#3ec277' };
+    var sentimentColorsIG = { negative: '#e0685c', neutral: '#7a95c4', positive: '#e1306c' };
 
-    function renderComments(key) {
-      var panel = document.getElementById('comment-panel');
+    function renderCommentsInto(panelId, dataSet, colors, key) {
+      var panel = document.getElementById(panelId);
       var parts = key.split('-');
       var stage = parts[0], sentiment = parts[1];
-      var items = commentData[key] || [];
+      var items = dataSet[key] || [];
 
       var tagHtml = '<div class="comment-panel-tag">' +
-        '<span style="background:' + sentimentColors[sentiment] + '22;color:' + sentimentColors[sentiment] + '">' + sentiment.charAt(0).toUpperCase() + sentiment.slice(1) + '</span>' +
+        '<span style="background:' + colors[sentiment] + '22;color:' + colors[sentiment] + '">' + sentiment.charAt(0).toUpperCase() + sentiment.slice(1) + '</span>' +
         '<span style="background:#eee;color:var(--text)">' + stageLabels[stage] + '</span>' +
         '</div>';
 
@@ -1920,15 +2547,30 @@
       panel.innerHTML = tagHtml + bodyHtml;
     }
 
+    function renderComments(key) {
+      renderCommentsInto('comment-panel', commentData, sentimentColors, key);
+    }
+
+    function renderCommentsIG(key) {
+      renderCommentsInto('comment-panel-ig', commentDataIG, sentimentColorsIG, key);
+    }
+
     document.querySelectorAll('.grid-cell').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        document.querySelectorAll('.grid-cell').forEach(function (b) { b.classList.remove('active'); });
+        var isIG = btn.dataset.source === 'ig';
+        var scope = isIG ? '[data-source="ig"]' : '.grid-cell:not([data-source="ig"])';
+        document.querySelectorAll(scope).forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        renderComments(btn.dataset.key);
+        if (isIG) {
+          renderCommentsIG(btn.dataset.key);
+        } else {
+          renderComments(btn.dataset.key);
+        }
       });
     });
 
     renderComments('generic-positive');
+    renderCommentsIG('generic-positive');
   </script>
 
 </body>
