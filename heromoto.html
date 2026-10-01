@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hero MotoCorp — Competitive Insight</title>
+<style>
+  :root {
+    --slide-width: 1280px;
+    --slide-height: 720px;
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --accent: #e2231a;
+    --accent-tint: #fdece9;
+    --muted: #6b6b6b;
+    --gray: #b7bcc3;
+    --gridline: #e9e9e9;
+    --c-heromotocorp: var(--accent);
+    --c-honda: #2f6fed;
+    --c-tvs: #f2a93b;
+    --c-bajaj: #7a5fc4;
+    --good: #3ec277;
+    --average: #5b8fd9;
+    --poor: #e0a458;
+    --critical: #e0685c;
+    --warn-tint: #fceceb;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #e5e5e5;
+    color: var(--text);
+  }
+
+  .fab {
+    position: fixed;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.22);
+    z-index: 100;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    padding: 0;
+  }
+
+  .fab:hover {
+    transform: scale(1.07);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  }
+
+  .fab svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  .fab-download { bottom: 20px; right: 20px; }
+  .fab-fullscreen { top: 20px; right: 20px; }
+
+  .deck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .slide {
+    width: var(--slide-width);
+    height: var(--slide-height);
+    background: var(--bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    padding: 46px 60px 38px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide .logo {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    height: 20px;
+    width: auto;
+  }
+
+  .kicker {
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  h1 {
+    font-size: 30px;
+    margin: 0 0 20px 0;
+    line-height: 1.15;
+  }
+
+  /* ===== Story body: two columns ===== */
+  .story-body {
+    display: flex;
+    gap: 36px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .story-body.single-col {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-col {
+    width: 340px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-label {
+    font-size: 12.5px;
+    color: var(--muted);
+    max-width: 260px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+
+  .hero-number {
+    font-size: 62px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .hero-delta {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--accent-tint);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 1.3s forwards;
+  }
+
+  .rank-list {
+    margin-top: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .rank-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: slideIn 0.45s ease forwards;
+  }
+
+  .rank-row:nth-child(1) { animation-delay: 0.15s; }
+  .rank-row:nth-child(2) { animation-delay: 0.25s; }
+  .rank-row:nth-child(3) { animation-delay: 0.35s; }
+  .rank-row:nth-child(4) { animation-delay: 0.45s; }
+  .rank-row:nth-child(5) { animation-delay: 0.55s; }
+
+  .rank-row.hero-row {
+    background: var(--accent-tint);
+    font-weight: 700;
+  }
+
+  .rank-logo {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--gridline);
+  }
+
+  .rank-row.hero-row .rank-logo {
+    width: 30px;
+    height: 30px;
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .rank-name {
+    color: var(--text);
+  }
+
+  .rank-row:not(.hero-row) .rank-name { color: var(--muted); }
+
+  .rank-value {
+    margin-left: auto;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+  }
+
+  .rank-row:not(.hero-row) .rank-value { color: var(--text); font-weight: 600; }
+
+  /* ===== Chart column ===== */
+  .chart-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .chart-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .chart-heading span {
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .scatter {
+    width: 100%;
+    flex: 1;
+    display: block;
+  }
+
+  .axis-line {
+    stroke: #c3c2b7;
+    stroke-width: 1.5;
+  }
+
+  .axis-line.animate {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw 0.7s ease 0.1s forwards;
+  }
+
+  .gridline {
+    stroke: var(--gridline);
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+  }
+
+  .tick {
+    font-size: 10.5px;
+    fill: var(--muted);
+  }
+
+  .axis-title {
+    font-size: 11px;
+    fill: var(--muted);
+    font-weight: 600;
+  }
+
+  .dot-ring {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    animation: pop 0.55s cubic-bezier(.34,1.56,.64,1) forwards;
+    fill: #fff;
+  }
+
+  .dot-ring.hero-brand { stroke: var(--accent); stroke-width: 2.5; }
+  .dot-ring.competitor { stroke: var(--gridline); stroke-width: 1.5; }
+
+  .logo-mark {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    clip-path: circle(50%);
+    animation: pop 0.55s cubic-bezier(.34,1.56,.64,1) forwards;
+  }
+
+  .dot-value {
+    font-size: 12.5px;
+    fill: var(--accent);
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  /* ===== Shared brand legend (slide 2) ===== */
+  .brand-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 4px 0 10px;
+    font-size: 12px;
+    color: var(--text);
+  }
+
+  .brand-legend .item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .brand-legend .swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .brand-legend img {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  /* ===== Pie grid (slide 2) ===== */
+  .pie-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .pie-divider {
+    width: 1px;
+    align-self: stretch;
+    margin: 20px 4px;
+    background: var(--gridline);
+  }
+
+  .pie-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pie-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .pie-title span {
+    display: block;
+    font-weight: 400;
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+
+  .donut-wrap {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .donut-wrap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .pie-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .pie-center .leader-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .pie-center .leader-pct {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .donut-seg {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  /* ===== Funnel x Sentiment grid (slide 3) ===== */
+  .funnel-layout {
+    display: flex;
+    gap: 28px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .funnel-grid-col {
+    width: 460px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .funnel-grid {
+    display: grid;
+    grid-template-columns: 118px repeat(3, 1fr);
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .funnel-grid .col-head {
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 6px;
+  }
+
+  .funnel-grid .row-label {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .grid-cell {
+    border: none;
+    border-radius: 10px;
+    padding: 16px 8px;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text);
+    cursor: pointer;
+    font-variant-numeric: tabular-nums;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    opacity: 0;
+    animation: fadeUp 0.4s ease forwards;
+    font-family: inherit;
+  }
+
+  .grid-cell:hover { transform: translateY(-2px); }
+
+  .grid-cell.active {
+    box-shadow: 0 0 0 3px var(--accent) inset;
+  }
+
+  .grid-cell .cell-hint {
+    display: block;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .comment-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .comment-panel {
+    flex: 1;
+    background: #fafafa;
+    border: 1px solid var(--gridline);
+    border-radius: 10px;
+    padding: 16px 20px;
+    overflow-y: auto;
+    min-height: 0;
+  }
+
+  .comment-panel-tag {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .comment-panel-tag span {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 11px;
+    border-radius: 20px;
+  }
+
+  .comment-item {
+    padding: 9px 0;
+    border-bottom: 1px solid var(--gridline);
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.45;
+  }
+
+  .comment-item:last-child { border-bottom: none; }
+
+  .comment-empty {
+    color: var(--muted);
+    font-size: 13.5px;
+    font-style: italic;
+  }
+
+  /* ===== Channel Health slide (slide 4) ===== */
+  .channel-slide-body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .health-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 16px 22px;
+    background: #fafafa;
+    border-radius: 10px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .health-score-block {
+    flex-shrink: 0;
+    text-align: center;
+    padding-right: 28px;
+    border-right: 1px solid var(--gridline);
+  }
+
+  .health-score-value {
+    font-size: 50px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .health-score-value .of100 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  .health-score-value .hero-number {
+    font-size: 50px;
+    color: var(--text);
+  }
+
+  .health-score-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    max-width: 140px;
+    line-height: 1.3;
+  }
+
+  .health-bar-wrap { flex: 1; }
+
+  .health-bar-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .health-bar {
+    display: flex;
+    height: 32px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #eee;
+  }
+
+  .seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  .seg-good { background: var(--good); }
+  .seg-average { background: var(--average); }
+  .seg-poor { background: var(--poor); }
+  .seg-critical { background: var(--critical); }
+
+  .health-legend {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+    font-size: 11.5px;
+    color: var(--muted);
+    flex-wrap: wrap;
+  }
+
+  .health-legend .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+
+  .health-legend b { color: var(--text); }
+
+  .waste-row {
+    display: flex;
+    gap: 22px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .waste-col {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--gridline);
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .waste-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .waste-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .funnel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 6px;
+  }
+
+  .funnel-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: var(--text);
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--gridline);
+  }
+
+  .funnel-row b { font-variant-numeric: tabular-nums; }
+  .funnel-row:last-child { border-bottom: none; }
+
+  .warn-hero-wrap {
+    text-align: center;
+    margin: 6px 0 10px;
+  }
+
+  .warn-hero {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--critical);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+
+  .warn-hero-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+
+  .warn-callout {
+    margin-top: auto;
+    padding: 10px 12px;
+    border-left: 3px solid var(--critical);
+    background: var(--warn-tint);
+    font-size: 12px;
+    line-height: 1.42;
+    color: var(--text);
+  }
+
+  .warn-callout strong { color: var(--critical); }
+
+  .engagement-visual {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+
+  .engagement-visual .dot-cell {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: var(--critical);
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  /* ===== Parameter winners slide (slide 5) ===== */
+  .params-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .params-note b { color: var(--text); }
+
+  .param-board {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .param-row {
+    display: grid;
+    grid-template-columns: 18px 150px 1fr 1fr 78px;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    opacity: 0;
+    animation: fadeUp 0.4s ease forwards;
+  }
+
+  .param-row.winner { background: var(--accent-tint); }
+
+  .param-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray);
+  }
+
+  .param-row.winner .param-dot { background: var(--accent); }
+
+  .param-name {
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .param-leader { color: var(--text); }
+  .param-leader .val { font-weight: 800; color: var(--accent); margin-left: 3px; }
+
+  .param-runner { color: var(--muted); }
+  .param-runner .val { font-weight: 600; color: var(--text); margin-left: 3px; }
+
+  .param-dev {
+    text-align: right;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+  }
+
+  .param-row.winner .param-dev { color: var(--accent); }
+
+  .formula-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 14px 0 8px;
+  }
+
+  .formula-title span {
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .formula-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .formula-chip {
+    background: #fafafa;
+    border: 1px solid var(--gridline);
+    border-radius: 20px;
+    padding: 6px 13px;
+    font-size: 11.5px;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.35s ease forwards;
+  }
+
+  .formula-chip b { font-weight: 700; }
+
+  .formula-chip.winner {
+    background: var(--accent-tint);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ===== Takeaway bar ===== */
+  .takeaway-bar {
+    margin-top: 18px;
+    padding: 12px 18px;
+    border-left: 3px solid var(--accent);
+    background: var(--accent-tint);
+    font-size: 14.5px;
+    line-height: 1.4;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.5s ease 1.5s forwards;
+  }
+
+  .takeaway-bar strong { color: var(--accent); }
+
+  /* ===== Title cover slide ===== */
+  .title-cover {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, var(--accent-tint) 100%);
+  }
+
+  .cover-logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    margin-bottom: 34px;
+    opacity: 0;
+    animation: pop 0.6s cubic-bezier(.34,1.56,.64,1) forwards;
+  }
+
+  .cover-logo-card {
+    background: #f7f1e3;
+    padding: 14px 24px;
+    border-radius: 12px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+  }
+
+  .cover-logo-card img { height: 40px; display: block; }
+
+  .cover-x {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--muted);
+  }
+
+  .cover-lumetrics-card {
+    background: #fff;
+    padding: 14px 24px;
+    border-radius: 12px;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.08);
+    border: 1px solid var(--gridline);
+    display: flex;
+    align-items: center;
+  }
+
+  .cover-lumetrics-card img { height: 28px; display: block; }
+
+  .cover-kicker {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.25s forwards;
+  }
+
+  .cover-title {
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.18;
+    margin: 0 0 18px;
+    max-width: 820px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.4s forwards;
+  }
+
+  .cover-title .hl { color: var(--accent); }
+
+  .cover-subtitle {
+    font-size: 16.5px;
+    color: var(--muted);
+    max-width: 620px;
+    line-height: 1.55;
+    margin: 0 0 34px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.55s forwards;
+  }
+
+  .cover-meta {
+    font-size: 11.5px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-top: 20px;
+    border-top: 1px solid var(--gridline);
+    width: 100%;
+    max-width: 520px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.7s forwards;
+  }
+
+  /* ===== Conclusion slide ===== */
+  .verdict-row {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .verdict-card {
+    flex: 1;
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+    border: 1px solid var(--gridline);
+  }
+
+  .verdict-card.strength { background: var(--accent-tint); border-color: var(--accent); }
+  .verdict-card.risk { background: var(--warn-tint); border-color: var(--critical); }
+  .verdict-card.opportunity { background: #eef4fc; border-color: var(--average); }
+
+  .verdict-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .verdict-card.strength .verdict-icon { background: var(--accent); }
+  .verdict-card.risk .verdict-icon { background: var(--critical); }
+  .verdict-card.opportunity .verdict-icon { background: var(--average); }
+
+  .verdict-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .verdict-card.strength .verdict-title { color: var(--accent); }
+  .verdict-card.risk .verdict-title { color: var(--critical); }
+  .verdict-card.opportunity .verdict-title { color: #2a5f9e; }
+
+  .verdict-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .verdict-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .verdict-list li {
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: var(--text);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .verdict-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.5;
+  }
+
+  .verdict-list b { font-weight: 800; }
+
+  .verdict-bottom-line {
+    margin-top: 20px;
+    padding: 18px 24px;
+    background: var(--text);
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .verdict-bottom-line strong { color: var(--accent); }
+  .verdict-bottom-line .sub {
+    display: block;
+    font-size: 12px;
+    color: #b9b9b9;
+    margin-top: 8px;
+    font-weight: 400;
+  }
+
+  /* ===== Platform source footer ===== */
+  .platform-footer {
+    position: absolute;
+    bottom: 16px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .platform-footer .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .platform-footer .dot.yt { background: #ff0000; }
+
+  /* ===== Placeholder / unavailable-data state ===== */
+  .placeholder-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+    border: 1.5px dashed var(--gridline);
+    border-radius: 14px;
+    padding: 40px;
+  }
+
+  .placeholder-box .placeholder-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--warn-tint);
+    color: var(--critical);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .placeholder-box .placeholder-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .placeholder-box .placeholder-body {
+    font-size: 13.5px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.5;
+  }
+
+  /* ===== Keyframes ===== */
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes pop {
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  body.fs-mode { background: #000; }
+  body.fs-mode .fab { display: none; }
+
+  body.fs-mode .deck {
+    height: 100vh;
+    padding: 0;
+    gap: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+  }
+
+  body.fs-mode .slide {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    box-shadow: none;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  @media print {
+    body { background: #fff; margin: 0; }
+    .fab { display: none; }
+    .deck { padding: 0; gap: 0; }
+    .slide {
+      box-shadow: none;
+      margin: 0;
+      page-break-after: always;
+      break-after: page;
+    }
+    .slide:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+    .hero-delta, .rank-row, .dot-ring, .logo-mark, .dot-value,
+    .donut-wrap, .donut-seg, .grid-cell,
+    .health-row, .seg, .waste-col, .dot-cell,
+    .param-row, .formula-chip,
+    .cover-logo-row, .cover-kicker, .cover-title, .cover-subtitle, .cover-meta,
+    .verdict-card, .verdict-bottom-line,
+    .takeaway-bar, .axis-line.animate {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+    /* Only the draw-in axis lines use stroke-dashoffset as an animation progress
+       value (0 = fully drawn). Donut segments use it to encode each slice's fixed
+       rotational position on the circle — forcing it to 0 for print would collapse
+       every segment to the same start angle, breaking the pie geometry. */
+    .axis-line.animate {
+      stroke-dashoffset: 0 !important;
+    }
+    @page { size: 1280px 720px; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <button class="fab fab-fullscreen" id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle fullscreen" aria-label="Toggle fullscreen">
+    <svg id="fs-icon-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="8 3 3 3 3 8"></polyline>
+      <polyline points="16 3 21 3 21 8"></polyline>
+      <polyline points="3 16 3 21 8 21"></polyline>
+      <polyline points="21 16 21 21 16 21"></polyline>
+    </svg>
+    <svg id="fs-icon-compress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+      <polyline points="3 8 8 8 8 3"></polyline>
+      <polyline points="21 8 16 8 16 3"></polyline>
+      <polyline points="3 16 8 16 8 21"></polyline>
+      <polyline points="21 16 16 16 16 21"></polyline>
+    </svg>
+  </button>
+
+  <button class="fab fab-download" onclick="window.print()" title="Download as PDF" aria-label="Download as PDF">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v12"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <path d="M5 19h14"></path>
+    </svg>
+  </button>
+
+  <div class="deck">
+
+    <section class="slide title-cover">
+      <div class="cover-logo-row">
+        <div class="cover-logo-card">
+          <img src="assets/brand-logos/heromotocorp.jpg" alt="Hero MotoCorp">
+        </div>
+        <span class="cover-x">&times;</span>
+        <div class="cover-lumetrics-card">
+          <img src="assets/lumetrics-logo.svg" alt="Lumetrics">
+        </div>
+      </div>
+      <div class="cover-kicker">Sneak Peek</div>
+      <h1 class="cover-title">Hero MotoCorp's <span class="hl">Video Strategy</span>, Decoded</h1>
+      <p class="cover-subtitle">Where the channel stands against Honda, TVS and Bajaj, what the audience is saying, and where the YouTube engine is leaking — a full-funnel video intelligence briefing powered by Lumetrics.</p>
+      <div class="cover-meta">Competitive Insight &middot; Share of Voice &amp; Mind &middot; Comment Sentiment &middot; Channel Health &middot; Content Deepdive</div>
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Competitive Insight &middot; Two-Wheelers &middot; YouTube &middot; Lifetime</div>
+      <h1>Honda Dominates Reach and Resonance — Hero MotoCorp Trails Far Behind</h1>
+
+      <div class="story-body">
+
+        <div class="stat-col">
+          <div class="hero-label">Avg. engagement on videos with 1M+ views (Hero MotoCorp)</div>
+          <div class="hero-number" data-target="1156" data-decimals="0">0</div>
+          <div class="hero-delta">11.6&times; behind category leader</div>
+
+          <div class="rank-list">
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos/honda2wheelers.jpg" alt="Honda 2 Wheelers India">
+              <span class="rank-name">Honda 2 Wheelers India</span>
+              <span class="rank-value">13,436.50</span>
+            </div>
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos/bajajauto.jpg" alt="Bajaj Auto Ltd">
+              <span class="rank-name">Bajaj Auto Ltd</span>
+              <span class="rank-value">10,270.86</span>
+            </div>
+            <div class="rank-row">
+              <img class="rank-logo" src="assets/brand-logos/tvsmotor.jpg" alt="TVS Motor Company">
+              <span class="rank-name">TVS Motor Company</span>
+              <span class="rank-value">2,042.97</span>
+            </div>
+            <div class="rank-row hero-row">
+              <img class="rank-logo" src="assets/brand-logos/heromotocorp.jpg" alt="Hero MotoCorp">
+              <span class="rank-name">Hero MotoCorp</span>
+              <span class="rank-value">1,156.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-col">
+          <div class="chart-heading">Reach vs. Resonance <span>— videos with 1M+ views, by brand, lifetime</span></div>
+          <svg class="scatter" viewBox="0 0 640 364" preserveAspectRatio="xMidYMid meet">
+            <!-- gridlines -->
+            <line class="gridline" x1="60" y1="206.67" x2="620" y2="206.67"></line>
+            <text class="tick" x="52" y="210.67" text-anchor="end">5,000</text>
+            <line class="gridline" x1="60" y1="113.33" x2="620" y2="113.33"></line>
+            <text class="tick" x="52" y="117.33" text-anchor="end">10,000</text>
+
+            <!-- axes -->
+            <line class="axis-line animate" pathLength="1" x1="60" y1="20" x2="60" y2="300"></line>
+            <line class="axis-line animate" pathLength="1" x1="60" y1="300" x2="620" y2="300"></line>
+
+            <!-- x ticks -->
+            <text class="tick" x="60" y="330" text-anchor="middle">0</text>
+            <text class="tick" x="246.67" y="330" text-anchor="middle">30</text>
+            <text class="tick" x="433.33" y="330" text-anchor="middle">60</text>
+            <text class="tick" x="620" y="330" text-anchor="middle">90</text>
+
+            <text class="axis-title" x="340" y="356" text-anchor="middle">Videos with 1M+ views (reach) &#8594;</text>
+            <text class="axis-title" x="-160" y="16" text-anchor="middle" transform="rotate(-90)">Avg. engagement &#8594;</text>
+
+            <!-- data points: cx,cy computed from (videos1M, avgEngagement), domain x:0-90, y:0-15000 -->
+            <!-- TVS (35, 2042.97) -->
+            <circle class="dot-ring competitor" cx="277.8" cy="261.9" r="16" style="animation-delay:0.9s"></circle>
+            <image class="logo-mark" x="264.8" y="248.9" width="26" height="26" href="assets/brand-logos/tvsmotor.jpg" style="animation-delay:0.9s"></image>
+
+            <!-- Bajaj (7, 10270.86) -->
+            <circle class="dot-ring competitor" cx="103.6" cy="108.3" r="16" style="animation-delay:0.8s"></circle>
+            <image class="logo-mark" x="90.6" y="95.3" width="26" height="26" href="assets/brand-logos/bajajauto.jpg" style="animation-delay:0.8s"></image>
+
+            <!-- Honda 2 Wheelers India (90, 13436.5) — category leader -->
+            <circle class="dot-ring competitor" cx="620" cy="49.2" r="16" style="animation-delay:1.0s"></circle>
+            <image class="logo-mark" x="607" y="36.2" width="26" height="26" href="assets/brand-logos/honda2wheelers.jpg" style="animation-delay:1.0s"></image>
+
+            <!-- Hero MotoCorp (1, 1156) — our brand -->
+            <circle class="dot-ring hero-brand" cx="66.2" cy="278.4" r="22" style="animation-delay:0.6s"></circle>
+            <image class="logo-mark" x="47.2" y="259.4" width="38" height="38" href="assets/brand-logos/heromotocorp.jpg" style="animation-delay:0.6s"></image>
+            <text class="dot-value" x="66.2" y="243" text-anchor="middle" style="animation-delay:0.95s">1,156</text>
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        Hero MotoCorp has only <strong>1 video</strong> crossing 1M lifetime views, versus Honda's <strong>90</strong> — and when Hero does break through, it earns just <strong>1,156</strong> avg. engagement, an <strong>11.6&times;</strong> gap to Honda's <strong>13,436.5</strong>. Even Bajaj, with a fraction of Hero's video output, out-engages Hero <strong>8.9&times;</strong> per breakout video.
+      </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Brand Health &middot; Share of Voice &amp; Mind &middot; YouTube &middot; Lifetime</div>
+      <h1>Share of Voice &amp; Mind: A Landscape Honda Owns</h1>
+
+      <div class="story-body single-col">
+
+        <div class="brand-legend">
+          <span class="item"><span class="swatch" style="background:var(--c-heromotocorp)"></span><img src="assets/brand-logos/heromotocorp.jpg" alt="">Hero MotoCorp</span>
+          <span class="item"><span class="swatch" style="background:var(--c-honda)"></span><img src="assets/brand-logos/honda2wheelers.jpg" alt="">Honda 2 Wheelers India</span>
+          <span class="item"><span class="swatch" style="background:var(--c-tvs)"></span><img src="assets/brand-logos/tvsmotor.jpg" alt="">TVS Motor Company</span>
+          <span class="item"><span class="swatch" style="background:var(--c-bajaj)"></span><img src="assets/brand-logos/bajajauto.jpg" alt="">Bajaj Auto Ltd</span>
+        </div>
+
+        <div class="pie-grid">
+
+          <!-- SOV Lifetime -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Voice <span>&middot; Lifetime</span></div>
+            <div class="donut-wrap" style="animation-delay:0.15s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-heromotocorp)" stroke-width="20" stroke-dasharray="0.41 345.16" stroke-dashoffset="0" style="animation-delay:0.3s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-honda)" stroke-width="20" stroke-dasharray="266.13 79.45" stroke-dashoffset="-0.41" style="animation-delay:0.35s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-tvs)" stroke-width="20" stroke-dasharray="26.13 319.45" stroke-dashoffset="-266.54" style="animation-delay:0.4s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bajaj)" stroke-width="20" stroke-dasharray="52.91 292.67" stroke-dashoffset="-292.67" style="animation-delay:0.45s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">Honda</div>
+                <div class="leader-pct">77.01%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pie-divider"></div>
+
+          <!-- SOM Lifetime -->
+          <div class="pie-cell">
+            <div class="pie-title">Share of Mind <span>&middot; Lifetime</span></div>
+            <div class="donut-wrap" style="animation-delay:0.3s">
+              <svg viewBox="0 0 140 140">
+                <g transform="rotate(-90 70 70)">
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-heromotocorp)" stroke-width="20" stroke-dasharray="1.28 344.30" stroke-dashoffset="0" style="animation-delay:0.45s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-honda)" stroke-width="20" stroke-dasharray="292.65 52.93" stroke-dashoffset="-1.28" style="animation-delay:0.5s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-tvs)" stroke-width="20" stroke-dasharray="34.77 310.81" stroke-dashoffset="-293.93" style="animation-delay:0.55s"></circle>
+                  <circle class="donut-seg" cx="70" cy="70" r="55" fill="none" stroke="var(--c-bajaj)" stroke-width="20" stroke-dasharray="16.86 328.71" stroke-dashoffset="-328.70" style="animation-delay:0.6s"></circle>
+                </g>
+              </svg>
+              <div class="pie-center">
+                <div class="leader-name">Honda</div>
+                <div class="leader-pct">84.69%</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="takeaway-bar">
+        <strong>Honda 2 Wheelers India commands 77.0% of Voice Share and 84.7% of Mind Share</strong> — lifetime. Hero MotoCorp holds just <strong>0.12% Voice</strong> and <strong>0.37% Mind</strong> Share, trailing even Bajaj (15.3% / 4.9%) and TVS (7.6% / 10.1%). This is a reach problem and a resonance problem at once.
+      </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Audience Sentiment &middot; Marketing Funnel &middot; Comment Analysis &middot; Lifetime &middot; 15,462 comments analysed</div>
+      <h1>54.6% Positive — But Consideration-Stage Comments Skew Critical</h1>
+
+      <div class="story-body">
+
+        <div class="funnel-grid-col">
+          <div class="funnel-grid">
+            <div></div>
+            <div class="col-head">Negative</div>
+            <div class="col-head">Neutral</div>
+            <div class="col-head">Positive</div>
+
+            <div class="row-label">Purchase</div>
+            <button class="grid-cell" data-key="purchase-negative" style="background:rgba(224,104,92,0.14);animation-delay:0.1s">19<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-key="purchase-neutral" style="background:rgba(122,149,196,0.10);animation-delay:0.15s">5<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-key="purchase-positive" style="background:rgba(62,194,119,0.16);animation-delay:0.2s">50<span class="cell-hint">comments</span></button>
+
+            <div class="row-label">Consideration</div>
+            <button class="grid-cell" data-key="consideration-negative" style="background:rgba(224,104,92,0.85);color:#fff;animation-delay:0.25s">3613<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+            <button class="grid-cell" data-key="consideration-neutral" style="background:rgba(122,149,196,0.40);animation-delay:0.3s">636<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-key="consideration-positive" style="background:rgba(62,194,119,0.85);color:#fff;animation-delay:0.35s">3659<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+
+            <div class="row-label">Awareness</div>
+            <button class="grid-cell" data-key="awareness-negative" style="background:rgba(224,104,92,0.65);color:#fff;animation-delay:0.4s">1236<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+            <button class="grid-cell" data-key="awareness-neutral" style="background:rgba(122,149,196,0.35);animation-delay:0.45s">305<span class="cell-hint">comments</span></button>
+            <button class="grid-cell" data-key="awareness-positive" style="background:rgba(62,194,119,0.75);color:#fff;animation-delay:0.5s">1840<span class="cell-hint" style="color:rgba(255,255,255,0.85)">comments</span></button>
+          </div>
+        </div>
+
+        <div class="comment-col">
+          <div class="chart-heading">Real Comments <span>— click a cell to load 5 examples</span></div>
+          <div class="comment-panel" id="comment-panel"></div>
+        </div>
+
+      </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Brand Analysis &middot; Channel Health &middot; YouTube SEO Audit &middot; Lifetime</div>
+      <h1>A 15/100 Channel Score — 744 of 748 Videos Rated Critical</h1>
+
+      <div class="channel-slide-body">
+
+        <div class="health-row" style="animation-delay:0.1s">
+          <div class="health-score-block">
+            <div class="health-score-value"><span class="hero-number" data-target="15" data-decimals="0">0</span><span class="of100">/100</span></div>
+            <div class="health-score-label">Channel Health Score &middot; avg. SEO optimization across 748 videos, lifetime</div>
+          </div>
+          <div class="health-bar-wrap">
+            <div class="health-bar-title">Video Score Distribution</div>
+            <div class="health-bar">
+              <div class="seg seg-good" style="width:0%;animation-delay:0.3s"></div>
+              <div class="seg seg-average" style="width:0%;animation-delay:0.35s"></div>
+              <div class="seg seg-poor" style="width:0.53%;animation-delay:0.4s"></div>
+              <div class="seg seg-critical" style="width:99.47%;animation-delay:0.45s">744</div>
+            </div>
+            <div class="health-legend">
+              <span><span class="dot" style="background:var(--good)"></span>Good (80&ndash;100): <b>0</b></span>
+              <span><span class="dot" style="background:var(--average)"></span>Average (55&ndash;79): <b>0</b></span>
+              <span><span class="dot" style="background:var(--poor)"></span>Poor (30&ndash;54): <b>4</b></span>
+              <span><span class="dot" style="background:var(--critical)"></span>Critical (0&ndash;29): <b>744</b></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="waste-row">
+
+          <div class="waste-col" style="animation-delay:0.2s">
+            <div class="waste-title">Lifetime Engagement Efficiency</div>
+            <div class="waste-subtitle">Lifetime &middot; 748 videos &middot; 2,606,216 total views</div>
+            <div class="warn-hero-wrap">
+              <div class="warn-hero hero-number" data-target="0.24" data-decimals="2" data-suffix="%">0</div>
+              <div class="warn-hero-label">aggregate engagement rate — (likes + comments) &divide; views, summed across every video</div>
+            </div>
+            <div class="warn-callout">
+              <strong>A 15/100 health score and a sub-quarter-percent engagement rate point to the same root cause.</strong> This isn't a handful of weak uploads — it's a channel-wide SEO and content-quality gap spanning nearly all 748 videos.
+            </div>
+          </div>
+
+          <div class="waste-col" style="animation-delay:0.35s">
+            <div class="placeholder-box" style="border:none;padding:8px;">
+              <div class="placeholder-icon">!</div>
+              <div class="placeholder-title">Per-Video Waste Analysis Unavailable</div>
+              <div class="placeholder-body">Individual video-level Views, Likes, Comments and Engagement Rate are currently not syncing on this channel in Lumetrics (all 748 videos read as 0 despite real lifetime totals above). The cost-per-view waste analysis needs this data and will be added once the sync is resolved.</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Content Deepdive &middot; Advanced Analytics &middot; Parameter Winners</div>
+      <h1>Content Deepdive: Awaiting Platform Access</h1>
+
+      <div class="story-body single-col" style="flex:1;">
+        <div class="placeholder-box">
+          <div class="placeholder-icon">!</div>
+          <div class="placeholder-title">Advanced Analytics Requires a Plan Upgrade</div>
+          <div class="placeholder-body">Lumetrics' Content Deepdive &mdash; the 220-parameter video dissection framework used to find each attribute's engagement-rate winner (format, hook, narrative, talent, animation, trust signals and more) &mdash; is not available on this workspace's current plan. Once access is upgraded, this slide will be rebuilt with Hero MotoCorp's real parameter-winner data, matching the same &gt;20% clear-winner methodology used across other Lumetrics brand decks.</div>
+        </div>
+      </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+    <section class="slide">
+      <img class="logo" src="assets/lumetrics-logo.svg" alt="Lumetrics logo">
+      <div class="kicker">Executive Summary &middot; Hero MotoCorp Video Strategy</div>
+      <h1>The Verdict: Real Goodwill, Nearly Invisible Machine</h1>
+
+      <div class="verdict-row">
+
+        <div class="verdict-card strength" style="animation-delay:0.1s">
+          <div class="verdict-icon">&#9733;</div>
+          <div class="verdict-title">Strength</div>
+          <div class="verdict-subtitle">Genuine audience affection exists, even without reach</div>
+          <ul class="verdict-list">
+            <li>Comment sentiment runs <b>54.6% positive</b> lifetime (15,462 comments analysed) vs. <b>35.6% negative</b> — nostalgia for legacy campaigns (Splendor+, Glamour X) still drives real, unprompted engagement</li>
+            <li>748 lifetime videos published &mdash; more raw content volume than TVS (247) or Bajaj (46), a latent library to re-optimize rather than rebuild from zero</li>
+          </ul>
+        </div>
+
+        <div class="verdict-card risk" style="animation-delay:0.25s">
+          <div class="verdict-icon">!</div>
+          <div class="verdict-title">Risk</div>
+          <div class="verdict-subtitle">Honda owns the category on every axis that matters</div>
+          <ul class="verdict-list">
+            <li>Share of Voice <b>0.12%</b> and Share of Mind <b>0.37%</b> &mdash; Honda holds <b>77.0%</b> / <b>84.7%</b>; even Bajaj (15.3%/4.9%) and TVS (7.6%/10.1%) lead Hero</li>
+            <li>Channel Health Score <b>15/100</b> &mdash; <b>744 of 748</b> videos (99.5%) rated "Critical"; only <b>1</b> video has ever crossed 1M views, earning <b>11.6&times;</b> less engagement than Honda's 1M+ average</li>
+            <li>Per-video waste analysis is currently blocked by a Lumetrics data-sync gap on this channel &mdash; flagged for follow-up, not swept under the rug</li>
+          </ul>
+        </div>
+
+        <div class="verdict-card opportunity" style="animation-delay:0.4s">
+          <div class="verdict-icon">&#8594;</div>
+          <div class="verdict-title">Opportunity</div>
+          <div class="verdict-subtitle">Fix the machine before writing new content</div>
+          <ul class="verdict-list">
+            <li>A 15/100 health score with 54.6% positive sentiment means the SEO/discoverability layer, not the audience's opinion of the brand, is the bottleneck &mdash; the cheaper problem to fix</li>
+            <li>Content Deepdive parameter-winner analysis is pending a plan upgrade; once unlocked, it will show exactly which formats and hooks in the existing 748-video library deserve re-promotion</li>
+            <li>Closing even a fraction of the Voice/Mind gap to Honda is achievable by re-optimizing existing videos before investing in net-new production</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="verdict-bottom-line" style="animation-delay:0.6s">
+        Hero MotoCorp doesn't have an audience-goodwill problem — sentiment is genuinely positive. It has a <strong>discoverability and optimization</strong> problem: a 748-video library sitting at a 15/100 health score, invisible next to Honda's dominant Voice and Mind Share. Fix the SEO layer, resolve the per-video data gap, and unlock Content Deepdive before greenlighting new production.
+        <span class="sub">Lumetrics Video Intelligence &middot; Hero MotoCorp Brand Health Briefing</span>
+      </div>
+
+      <div class="platform-footer"><span class="dot yt"></span>YouTube Data &middot; Lumetrics</div>
+
+    </section>
+
+  </div>
+
+  <script>
+    function toggleFullscreen() {
+      const el = document.documentElement;
+      const isFs = document.fullscreenElement || document.webkitFullscreenElement;
+      if (!isFs) {
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    }
+
+    function updateFsUI() {
+      const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      document.body.classList.toggle('fs-mode', isFs);
+      document.getElementById('fs-icon-expand').style.display = isFs ? 'none' : 'block';
+      document.getElementById('fs-icon-compress').style.display = isFs ? 'block' : 'none';
+    }
+
+    document.addEventListener('fullscreenchange', updateFsUI);
+    document.addEventListener('webkitfullscreenchange', updateFsUI);
+
+    // Animated count-up for hero numbers (any element with class "hero-number" and a data-target)
+    function animateCount(el) {
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const duration = 1200;
+      const start = performance.now();
+      el._animGen = (el._animGen || 0) + 1;
+      const gen = el._animGen;
+
+      function format(v) {
+        return prefix + v.toLocaleString('en-IN', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
+      }
+
+      function tick(now) {
+        if (el._animGen !== gen) return;
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = format(eased * target);
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = format(target);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    // Replay every slide's entrance animations each time it scrolls into view.
+    var ANIMATED_SELECTOR = '.hero-delta, .rank-row, .dot-ring, .logo-mark, .dot-value, ' +
+      '.donut-wrap, .donut-seg, .grid-cell, .health-row, .seg, .waste-col, .dot-cell, ' +
+      '.param-row, .formula-chip, .cover-logo-row, .cover-kicker, .cover-title, ' +
+      '.cover-subtitle, .cover-meta, .verdict-card, .verdict-bottom-line, ' +
+      '.takeaway-bar, .axis-line.animate';
+
+    function restartSlideAnimations(slide) {
+      var els = slide.querySelectorAll(ANIMATED_SELECTOR);
+      // Toggle animation-name only (not the "animation" shorthand) so each
+      // element's own inline animation-delay (used for staggering) survives the reset.
+      els.forEach(function (el) { el.style.animationName = 'none'; });
+      void slide.offsetWidth; // force reflow so the browser registers the reset
+      els.forEach(function (el) { el.style.animationName = ''; });
+
+      slide.querySelectorAll('.hero-number[data-target]').forEach(animateCount);
+    }
+
+    // Edge-triggered with hysteresis: fire once when a slide crosses UP through 80%
+    // visible, and only re-arm once it has mostly left the viewport (< 20%). Without
+    // the "already played" gate, the browser's separate callbacks for each threshold
+    // it crosses (e.g. 50% then 100%) would each pass the check and replay twice.
+    var slidePlayed = new WeakMap();
+
+    var slideObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var played = slidePlayed.get(entry.target) || false;
+        var ratio = entry.intersectionRatio;
+
+        if (!played && entry.isIntersecting && ratio >= 0.8) {
+          restartSlideAnimations(entry.target);
+          slidePlayed.set(entry.target, true);
+        } else if (played && ratio < 0.2) {
+          slidePlayed.set(entry.target, false);
+        }
+      });
+    }, { threshold: [0, 0.2, 0.8] });
+
+    document.querySelectorAll('.slide').forEach(function (slide) {
+      slideObserver.observe(slide);
+    });
+
+    // Funnel x Sentiment comment grid (slide 3)
+    var commentData = {
+      'purchase-negative': [
+        "Launching is not important plz delivery so fast to customers otherwise not click hero motors",
+        "We want xoom 160 Start the delivery ASAP😡😡😤😤",
+        "Tumlog timely manner me lauch karo. 1st feb ko tak showroom me gaya toh ata pata nahi.",
+        "Waiting for xpulse 421 ...... Launch it right now please🥹",
+        "Launch XMR 250 ASAP ❤️🔥"
+      ],
+      'purchase-neutral': [
+        "Just launch 250r ASAP 🤝",
+        "Xpuls 210😰📈",
+        "Xpuls🔥🔥🔥🔥🔥",
+        "Quick launch hero xpuls 200t",
+        "We are going to buy this bike on August 20 2019"
+      ],
+      'purchase-positive': [
+        "Dear Hero eagerly waiting to own this wonderful machine. Congratulations for your marvelous creation.. From Kerala.",
+        "Could you please confirm when booking and delivery will begin for the Xoom 160? Kindly expedite the process!",
+        "Excited to buy this machine",
+        "Kick start must😗",
+        "Really excited 🎉"
+      ],
+      'consideration-negative': [
+        "Hero splendor 2015 ka ad CHALTA RAHE kis kis Ko yad hai😊",
+        "i want to swap my old splendor+ with this and my dirt bike will be nearly complete.",
+        "0:28 second par splendor me disk brake he ye real he ya phir apse galti hui he.aaj tak hamne splendor me disk brake dekhi hi nahi",
+        "Hero MotoCorp digital metre problems left ka indicator Dete Hain To left ka show nahin karta hai aur right ka indicator Dete Hain तो digital metre mein right ka show nahin karta hai",
+        "Can hero give me a new bike?"
+      ],
+      'consideration-neutral': [
+        "I bought the bike yesterday, top variant. 🥳💍💗",
+        "My 7 months old baby very much like this Ad ❤😄😊 her favourite TV advertisement❤",
+        "Waiting for abs",
+        "Came for the robot❤...",
+        "Please next update ABS😢😢❤"
+      ],
+      'consideration-positive': [
+        "My fav rendition ❤😊✨",
+        "Best ad 2025 but it will popular 2025-2035",
+        "215m views 😲",
+        "I Like this add ❤❤",
+        "Best"
+      ],
+      'awareness-negative': [
+        "Hero splendor ka ad nahi dekha to kya dekha",
+        "Goat bike with even goated advertisement 🔥",
+        "Apart from Shaan's voice, Indian ads really suck. They don't have logic and moral.",
+        "What a add yaar.....❤😆🥹🤗",
+        "Chalta rahe tera mera milon ka yarana😢❤"
+      ],
+      'awareness-neutral': [
+        "Mare Ghar two splendor bai 😀",
+        "Hero Splendor এই ad.song..,. মন আবেগে ভরে গেল।",
+        "This ad available in Tamil 🎉",
+        "Ad is shoot in my city jodhpur ❤",
+        "Music ka jawab nahi"
+      ],
+      'awareness-positive': [
+        "My favourite advertisement and I came here for that cute robot 😍",
+        "The robot is soooooo much much more infinity cute 🥰☺️❣️😊",
+        "This बाइक is futuristic & trendy 😊",
+        "Hero 😊",
+        "Which is song name"
+      ],
+      'generic-positive': [
+        "Good",
+        "Very nice song",
+        "SHAAN SINGER",
+        "Ad girl 👄 name please",
+        "His voice like honey🖤"
+      ]
+    };
+
+    var stageLabels = { purchase: 'Purchase', consideration: 'Consideration', awareness: 'Awareness', generic: 'Generic' };
+    var sentimentColors = { negative: '#e0685c', neutral: '#7a95c4', positive: '#3ec277' };
+
+    function renderCommentsInto(panelId, dataSet, colors, key) {
+      var panel = document.getElementById(panelId);
+      var parts = key.split('-');
+      var stage = parts[0], sentiment = parts[1];
+      var items = dataSet[key] || [];
+
+      var tagHtml = '<div class="comment-panel-tag">' +
+        '<span style="background:' + colors[sentiment] + '22;color:' + colors[sentiment] + '">' + sentiment.charAt(0).toUpperCase() + sentiment.slice(1) + '</span>' +
+        '<span style="background:#eee;color:var(--text)">' + stageLabels[stage] + '</span>' +
+        '</div>';
+
+      var bodyHtml;
+      if (items.length === 0) {
+        bodyHtml = '<div class="comment-empty">No comments in this segment.</div>';
+      } else {
+        bodyHtml = items.map(function (text) {
+          return '<div class="comment-item">' + text + '</div>';
+        }).join('');
+      }
+
+      panel.innerHTML = tagHtml + bodyHtml;
+    }
+
+    function renderComments(key) {
+      renderCommentsInto('comment-panel', commentData, sentimentColors, key);
+    }
+
+    document.querySelectorAll('.grid-cell').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.grid-cell').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderComments(btn.dataset.key);
+      });
+    });
+
+    renderComments('generic-positive');
+  </script>
+
+</body>
+</html>
