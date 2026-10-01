@@ -1584,6 +1584,29 @@
     document.addEventListener('fullscreenchange', updateFsUI);
     document.addEventListener('webkitfullscreenchange', updateFsUI);
 
+    // Arrow-key slide navigation, active only in presentation/fullscreen mode
+    document.addEventListener('keydown', function (e) {
+      if (!document.body.classList.contains('fs-mode')) return;
+      var delta;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') delta = 1;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') delta = -1;
+      else return;
+
+      var deck = document.querySelector('.deck');
+      var slides = Array.from(deck.querySelectorAll('.slide'));
+      if (!slides.length) return;
+      e.preventDefault();
+
+      // In fs-mode the .deck element scrolls (not the window), so position
+      // has to be read from its own scrollTop, not window.scrollY.
+      var mid = deck.scrollTop + deck.clientHeight / 2;
+      var current = 0;
+      slides.forEach(function (s, i) { if (s.offsetTop <= mid) current = i; });
+
+      var target = Math.min(slides.length - 1, Math.max(0, current + delta));
+      slides[target].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
     // Animated count-up for hero numbers (any element with class "hero-number" and a data-target)
     function animateCount(el) {
       const target = parseFloat(el.dataset.target);
